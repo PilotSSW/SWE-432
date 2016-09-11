@@ -1,9 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="import" href="head.html"> 
-    </head>
-    <body>
-        <link rel="import" href="header.html">
-    </body>
+  <head>
+    <title>SWE-432 Project</title>
+    <link href="stylesheets/overrides.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="background"></div>
+      <div class="header">
+        <h1>
+          Welcome to Studio Z
+        </h1>
+      </div>
+      <div class="content">
+        <h3>Login</h3>
+        <div class="row">
+          <form action="main.html">
+            <table class="login-table">
+              <tr>
+                <th><label>Username: </label></th>
+                <th><input></input></th>
+              </tr>
+              <tr>
+                <th><label>Password: </label></th>
+                <th><input type="password"></input></th>
+              </tr>
+              <tr>
+                <th>
+                  <input type="submit" value="Login">
+                </th>
+              </tr>
+            </table>
+          </form>
+          <div class="newuser">
+            <form action="newuser.html">
+              <input type="submit" value="Sign Up!">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
