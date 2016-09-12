@@ -5,7 +5,7 @@ body{
 }
 .background {
 	display: block;
-  	background-image: url('http://www.msrstudiosny.com/wp-content/uploads/2012/10/StudioB_960x540.jpg'); 
+  	background-image: url('header.jpg'); 
   	background-size: cover; 
   	background-repeat: no-repeat; 
   	background-position: center center;
@@ -16,24 +16,24 @@ body{
   	right: 0;
   	width:100%;
   	height:100%;
-    -webkit-mask: -webkit-linear-gradient(white, transparent 0%, white);
-  	-webkit-filter: blur(5px);
-  	-moz-filter: blur(5px);
-  	-o-filter: blur(5px);
-  	-ms-filter: blur(5px);
-  	filter: blur(5px);
+    -webkit-mask: -webkit-linear-gradient(black, transparent 0%, black);
+  	-webkit-filter: blur(3px);
+  	-moz-filter: blur(3px);
+  	-o-filter: blur(3px);
+  	-ms-filter: blur(3px);
+  	filter: blur(3px);
 }
 
 .header{
 	padding-left: 25%;
 	padding-right: 25%;
-  color:black;
-  transition: -webkit-transform 1s, color 3s, opacity 1s, background 1s, width 1s, height 1s, font-size 1s;
+  filter: grayscale(0%);
+  transition: -webkit-transform 1s, filter 2s, opacity 1s, background 1s, width 1s, height 1s, font-size 1s;
 }
 
 .header:hover {
-  color:#aaaaaa;
-  transition: -webkit-transform 1s, color 3s, opacity 1s, background 1s, width 1s, height 1s, font-size 1s;
+  filter: grayscale(100%);
+  transition: -webkit-transform 1s, filter 2s, opacity 1s, background 1s, width 1s, height 1s, font-size 1s;
 }
 
 .content {
