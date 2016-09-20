@@ -1,0 +1,148 @@
+html {
+  background: url('../img/bg-term.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+h1 {
+  text-align: left;
+  font-style: normal;
+  font-family: "Lucida Console", monospace;
+  color: #14F074;
+}
+
+a, u {
+    text-decoration: none;
+    font-family: "Lucida Console", monospace;
+    color: #14F074;
+}
+
+body {
+  background-color: transparent;
+}
+/*.body {
+    background-image: url("img/bg-term.png");
+    background-color: #cccccc;
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+}*/
+
+
+input {
+  text-decoration: none !important;
+  border-color: #14F074 !important;
+  font-family: "Lucida Console", monospace !important;
+  background-color: #063315 !important;
+  color: #14F074 !important;
+}
+
+.registration-table{
+  border-style: none;
+}
+
+.login-table{
+  border-style: none;
+}
+
+.table-auth {
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: center;
+    table, th, td {
+      border: 1px solid black;
+    }
+}
+
+.section-img{
+	padding-left: 25%;
+	padding-right: 25%;
+  filter: grayscale(0%), drop-shadow(2px);
+  transition: -webkit-transform 1s, filter 1s, opacity 1s, background 1s, width 1s, height 1s, font-size 1s;
+}
+
+.section-img:hover {
+  filter: grayscale(100%);
+  transition: -webkit-transform 1s, filter 1s, opacity 1s, background 1s, width 1s, height 1s, font-size 1s;
+}
+
+.img {
+  display: block;
+  margin: 0 auto;
+}
+
+.content {
+	z-index: 100000;
+	justify-content: center;
+	padding-left: 30%;
+	padding-right: 30%;
+  text-align: justify;
+  font-family: "Lucida Console", monospace;
+  color: #14F074;
+}
+
+.register {
+  padding-top: 100px;
+  padding-bottom: 10px;
+  padding-left: 25%;
+}
+
+/*css animated button*/
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #063315;
+  border: none;
+  color: #14F074;
+  font-family: "Lucida Console", monospace;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-left: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  left: 0;
+}
+
+.footer{
+  color: #14F074;
+  font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px;
+  /* Vertically center the text there */
+  background-color: rgba(255,255,255,0.2);
+}
