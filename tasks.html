@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+  	<meta charset="UTF-8">
+  	<meta name="description"
+  	content="Static skeleton page for SWE Project done in tutorial format"/>
+  	<meta name="keywords"
+  	content="html5 tutorial, gmu swe432, html5"/>
+  	<meta name="robots" content="index,follow"/>
+  	<link rel="icon" href="img/terminal.png"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+    <script type="javascript" src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/tasklist.css">
+  	<title>SWE-432</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="navbar navbar-inverse">
+          <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="ide.html">The Editor</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="tasks.html">Tasks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="content">
+        <div id="thelist">
+          <div id="myDIV" class="header">
+            <h2>Assign Tasks</h2>
+            <input type="text" id="myInput" placeholder="Task...">
+            <input type="text" id="myInput2" placeholder="Developer...">
+          </div>
+          <ul id="tasklist">
+            <li class="checked">Start a new Site</li>
+            <li class="checked">Hire a Team</li>
+          </ul>
+          <span onclick="newElement()" class="addBtn">Add</span>
+          <script>
+            // Create a "close" button and append it to each list item
+            var myNodelist = document.getElementById("tasklist").getElementsByTagName("LI");
+            var i;
+            for (i = 0; i < myNodelist.length; i++) {
+              var span = document.createElement("SPAN");
+              var txt = document.createTextNode("\u00D7");
+              span.className = "close";
+              span.appendChild(txt);
+              myNodelist[i].appendChild(span);
+            }
+
+            // Click on a close button to hide the current list item
+            var close = document.getElementsByClassName("close");
+            var i;
+            for (i = 0; i < close.length; i++) {
+              close[i].onclick = function() {
+                var div = this.parentElement;
+                div.style.display = "none";
+              }
+            }
+
+            // Add a "checked" symbol when clicking on a list item
+            var list = document.querySelector('ul');
+            list.addEventListener('click', function(ev) {
+              if (ev.target.tagName === 'LI') {
+                ev.target.classList.toggle('checked');
+              }
+            }, false);
+
+            // Create a new list item when clicking on the "Add" button
+            function newElement() {
+              var li = document.createElement("li");
+              var inputValue = document.getElementById("myInput").value;
+              var inputValue2 = document.getElementById("myInput2").value;
+              var t = document.createTextNode("Task: " + inputValue + " -- Dev: " + inputValue2);
+              li.appendChild(t);
+              if (inputValue === '') {
+                alert("You must write something!");
+              } else {
+                document.getElementById("tasklist").appendChild(li);
+              }
+              if (inputValue2 === '') {
+                alert("You must write something!");
+              } else {
+                document.getElementById("tasklist").appendChild(li);
+              }
+              document.getElementById("myInput").value = "";
+              document.getElementById("myInput2").value = "";
+
+              var span = document.createElement("SPAN");
+              var txt = document.createTextNode("\u00D7");
+              span.className = "close";
+              span.appendChild(txt);
+              li.appendChild(span);
+
+              for (i = 0; i < close.length; i++) {
+                close[i].onclick = function() {
+                  var div = this.parentElement;
+                  div.style.display = "none";
+                }
+              }
+            }
+            </script>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container-fluid">
+        <span>Authors: Gordon Ngo, Sean Wolford</span>
+      </div>
+    </footer>
+  </body>
+</html>
