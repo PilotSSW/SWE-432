@@ -141,3 +141,18 @@ input {
   /* Vertically center the text there */
   background-color: rgba(255,255,255,0.2);
 }
+
+@media (min-width: 768px){
+    .navbar-nav {
+        margin: 0 auto;
+        display: table;
+        table-layout: auto;
+        float: none;
+        width: 100%;
+    }
+    .navbar-nav>li {
+        display: table-cell;
+        float: none;
+        text-align: center;
+    }
+} 
