@@ -1,5 +1,5 @@
 {
-  "name": "swe-432",
+  "name": "UnityOS",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,5 +22,17 @@
   },
   "devDependencies": {
     "nodemon": "^1.10.2"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }
