@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/PilotSSW/SWE-432#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "firebase": "^3.4.0"
   },
   "devDependencies": {
     "nodemon": "^1.10.2"

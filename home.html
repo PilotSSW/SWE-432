@@ -13,11 +13,17 @@
     <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/tasklist.css">
-    
+
     <!-- Firebase initialization --> 
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
     <script>
       // Initialize Firebase
+      var firebase = require("firebase/app");
+      require("firebase/auth");
+      require("firebase/database");
       var config = {
         apiKey: "AIzaSyA2d80wrdiDQ3Vw999T8HqvYXcG8KBVcEs",
         authDomain: "unityos-88808.firebaseapp.com",
@@ -25,6 +31,7 @@
         storageBucket: "",
         messagingSenderId: "761255611285"
       };
+
       firebase.initializeApp(config);
     </script>
   	<title>SWE-432</title>
