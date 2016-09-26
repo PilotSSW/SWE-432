@@ -1,10 +1,6 @@
 html {
-  background: url('../img/bg-term.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cedce7+0,596a72+100;Grey+3D+%231 */
+  background: linear-gradient(to bottom #cedce7 0%,#596a72 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 h1 {
@@ -21,7 +17,6 @@ a, u {
 }
 
 body {
-  background-color: transparent;
 }
 /*.body {
     background-image: url("img/bg-term.png");
