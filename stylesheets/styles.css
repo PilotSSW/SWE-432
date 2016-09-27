@@ -1,6 +1,9 @@
 html {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cedce7+0,596a72+100;Grey+3D+%231 */
-  background: linear-gradient(to bottom #cedce7 0%,#596a72 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background-image: url("../img/unitywater.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+ 
 }
 
 h1 {
@@ -129,8 +132,19 @@ input {
   left: 0;
 }
 
+.header{
+  color:white;
+  font-size: 16px;
+  position: absolute;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px;
+  /* Vertically center the text there */
+  background-color: rgba(50,50,50,0.5);
+}
+
 .footer{
-  color: #14F074;
   font-size: 16px;
   position: absolute;
   bottom: 0;
@@ -139,7 +153,7 @@ input {
   height: 60px;
   line-height: 60px;
   /* Vertically center the text there */
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(50,50,50,0.5);
 }
 
 @media (min-width: 768px){
