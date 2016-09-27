@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/PilotSSW/SWE-432#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "querystring": "^0.2.0",
+    "request": "^2.75.0"
   },
   "devDependencies": {
     "nodemon": "^1.10.2"
