@@ -1,5 +1,5 @@
 {
-  "name": "swe-432",
+  "name": "UnityOS",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,9 +17,22 @@
   },
   "homepage": "https://github.com/PilotSSW/SWE-432#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "firebase": "^3.4.0"
   },
   "devDependencies": {
     "nodemon": "^1.10.2"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }

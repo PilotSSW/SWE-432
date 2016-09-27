@@ -1,72 +1,73 @@
 <!DOCTYPE HTML>
 
 <!--Gordon Ngo SWE-432 HW1 -->
-<!--This submission was done separately for the sole purpose of refreshing knowledge of HTML/CSS and practice, disregard for actual submission-->
 
 <html lang="en">
-
 	<head>
+		<script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+		<script type="javascript" src="js/bootstrap.js"></script>
+		<link rel="stylesheet" href="stylesheets/bootstrap.css">
+		<link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
+		<link rel="stylesheet" href="stylesheets/styles.css"/>
 
-	<meta charset="UTF-8">
-
-	<!-- Description for your page. Shouldn't be longer then 200 characters -->
-	<meta name="description"
-	content="Static skeleton page for SWE Project done in tutorial format"/>
-
-	<!-- Keywords are used to define your content for search engines. Shouldn't be longer then 1,000 characters -->
-	<meta name="keywords"
-	content="html5 tutorial, gmu swe432, html5"/>
-
-	<!-- Defines how search engines should index your content.
-	index / noindex : indicates if search engines should index the page
-	follow / nofollow : indicates if hyperlinks should be followed and indexed
-	archive / noarchive : indicates whether the page should be archived-->
-	<meta name="robots" content="index,follow"/>
-
-	<!-- References a icon (16 x 16) to associate with your page. Save it in the root directory for IE -->
-	<link rel="icon" href="img/terminal.png"/>
-
-	<!-- Defines the location of a style sheet -->
-	<!-- Style sheets have replaced HTML styling features from the past -->
-	<script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
-	<script type="javascript" src="js/bootstrap.js"></script>
-
-	<link rel="stylesheet" href="stylesheets/bootstrap.css">
-	<link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
-
-	<link rel="stylesheet" href="stylesheets/styles.css"/>
-
-	<!-- You must have a title for your page that should be about 16 characters long -->
-	<title>Login</title>
-
+		<!-- Firebase initialization --> 
+	    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-app.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
+	    <!-- Leave out Storage -->
+		<!-- <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-storage.js"></script> -->
+	    <script>
+	      	// Initialize Firebase
+	      	var config = {
+	        	apiKey: "AIzaSyA2d80wrdiDQ3Vw999T8HqvYXcG8KBVcEs",
+	        	authDomain: "unityos-88808.firebaseapp.com",
+	        	databaseURL: "https://unityos-88808.firebaseio.com",
+	        	storageBucket: "unityos-88808.appspot.com",
+	        	messagingSenderId: "761255611285"
+	      	};
+	      	firebase.initializeApp(config);
+	    </script>
+		<title>Login</title>
 	</head>
-
-<body>
-	<div class="container-fluid">
-		<div class="content">
-			<h1>PipEdit - Login</h1>
-			<br>
-	    <br>
-	    <form action="ide.html">
-	      <table class="login-table">
-	        <tr>
-	          <th><label>Username:</label></th>
-	          <th><input type="text"></th>
-	        </tr>
-	        <tr>
-	          <th><label>Password:</label></th>
-	          <th><input type="password"></th>
-	        </tr>
-	       </table>
-	       <br>
-	          <button class="button" style="vertical-align:middle" type="submit"> <span>Log In</span></button>
-	     </form>
-
-	   </div>
-	</div>
- </body>
-
-
-
-
+	<body>
+		<div class="container-fluid">
+			<div class="content">
+				<h1>UnityOS - Login</h1>
+				<br>
+		    	<br>
+			    <form action="home.html">
+			      	<table class="login-table">
+				        <tr>
+				          <th><label>Email:</label></th>
+				          <th><input id="email" type="text"></th>
+				        </tr>
+				        <tr>
+				          <th><label>Password:</label></th>
+				          <th><input id="password" type="password"></th>
+				        </tr>
+			       	</table>
+			       	<br>
+			        <button id="signin" class="button" style="vertical-align:middle" type="submit"> <span>Log In</span></button>
+			    </form>
+			</div>
+		</div>
+		<script>
+			$("#signin").on("click", function() {
+				var email = $("#email").val();
+				var password = $("#password").val();
+	    		firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+			  	// Handle Errors here.
+			  		var errorCode = error.code;
+			  		var errorMessage = error.message;
+			  		if(!error) {
+			  			doLogin(user);
+			  		}
+			  		else {
+			  			alert(error);
+			  		}
+				});
+			});
+		</script>
+	</body>
 </html>

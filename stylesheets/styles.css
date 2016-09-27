@@ -1,10 +1,6 @@
 html {
-  background: url('../img/bg-term.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cedce7+0,596a72+100;Grey+3D+%231 */
+  background: linear-gradient(to bottom #cedce7 0%,#596a72 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 h1 {
@@ -21,7 +17,6 @@ a, u {
 }
 
 body {
-  background-color: transparent;
 }
 /*.body {
     background-image: url("img/bg-term.png");
@@ -78,8 +73,8 @@ input {
 .content {
 	z-index: 100000;
 	justify-content: center;
-	padding-left: 30%;
-	padding-right: 30%;
+	padding-left: 25%;
+	padding-right: 25%;
   text-align: justify;
   font-family: "Lucida Console", monospace;
   color: #14F074;
@@ -146,3 +141,18 @@ input {
   /* Vertically center the text there */
   background-color: rgba(255,255,255,0.2);
 }
+
+@media (min-width: 768px){
+    .navbar-nav {
+        margin: 0 auto;
+        display: table;
+        table-layout: auto;
+        float: none;
+        width: 100%;
+    }
+    .navbar-nav>li {
+        display: table-cell;
+        float: none;
+        text-align: center;
+    }
+} 
