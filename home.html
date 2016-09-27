@@ -20,20 +20,16 @@
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
     <script>
-      // Initialize Firebase
-      var firebase = require("firebase/app");
-      require("firebase/auth");
-      require("firebase/database");
-      var config = {
-        apiKey: "AIzaSyA2d80wrdiDQ3Vw999T8HqvYXcG8KBVcEs",
-        authDomain: "unityos-88808.firebaseapp.com",
-        databaseURL: "https://unityos-88808.firebaseio.com",
-        storageBucket: "",
-        messagingSenderId: "761255611285"
-      };
-
-      firebase.initializeApp(config);
-    </script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyA2d80wrdiDQ3Vw999T8HqvYXcG8KBVcEs",
+            authDomain: "unityos-88808.firebaseapp.com",
+            databaseURL: "https://unityos-88808.firebaseio.com",
+            storageBucket: "unityos-88808.appspot.com",
+            messagingSenderId: "761255611285"
+          };
+          firebase.initializeApp(config);
+      </script>
   	<title>SWE-432</title>
   </head>
 
@@ -43,7 +39,7 @@
         <nav class="navbar navbar-inverse navbar-fixed">
           <ul class="nav nav-justified navbar-nav" style="float:">
             <li class="nav-item active">
-                <a class="nav-link" href="unityHome.html">Home</a>
+                <a class="nav-link" href="home.html">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="personal.html">Personal</a>
