@@ -23,7 +23,7 @@ $(function() {
     firebase.initializeApp(firebaseref);
 
 	//Global Variables for userData and the firebase reference to the list.
-    var listRef = null;
+  var listRef = null;
 	var userData = null;
 
 	//timer is used for few animations for the status messages.
@@ -144,7 +144,10 @@ $(function() {
 
 	//Setting the 3 firebase events to call different functions that handle the specific functionality of the app.
     var setUpFirebaseEvents = function() {
-        listRef = new Firebase('https://unityos-test.firebaseio.com/lists/sharedlist/items');
+        //listRef = new Firebase('https://unityos-test.firebaseio.com/lists/sharedlist/items');
+        //Updated to latest SDK 3.4
+         listRef = firebase.database().ref("lists/sharedlist/items/");
+
         $("#sharedlist").html('');
         listRef.off('child_added', childAddedFunction)
         listRef.on("child_added", childAddedFunction);
@@ -158,6 +161,7 @@ $(function() {
 
 	//This function is a callback for ref.onAuth() and is triggered every time the login status of the user changes.
 	//This function is also called when the app is initialized (and hence helps you in maintaining the session for a user).
+/*
     var authDataCallback = function(authData) {
         console.log("authCallback Event is called from onAuth Event");
         if (authData) {
@@ -173,13 +177,35 @@ $(function() {
             listRef = null;
         }
     }
+  */
+
+
+
+  var authDataCallback = function(user) {
+      console.log("authCallback Event is called from onAuth Event");
+      if (user) {
+          console.log("User " + user.uid + " is logged in with " + user.providerData);
+          userData = user;
+          loadProfile();
+          setUpFirebaseEvents();
+
+      } else {
+          console.log("User is logged out");
+          $(".status").html('You are not logged in!').show();
+          userData = null;
+          listRef = null;
+      }
+  };
+
+
 
 	//Each user has a name. This function loads the profile for the user who logged in.
 	//You can extend the functionality to add more data when saving the profile.
     var loadProfile = function() {
-        userRef = firebaseref.child('users').child(userData.uid);
-        userRef.once('value', function(snap) {
-            var user = snap.val();
+        //userRef = firebaseref.child('users').child(userData.uid);
+        userRef = firebase.database().ref('users').child(userData.uid);
+        userRef.once('value', function(snapshot) {
+            var user = snapshot.val();
             if (!user) {
                 return;
             }
@@ -197,7 +223,8 @@ $(function() {
 
 
     //Listen to Auth Changes
-    firebaseref.onAuth(authDataCallback);
+    //firebaseref.onAuth(authDataCallback);
+    firebase.auth().onAuthStateChanged(authDataCallback);
 
 	//Event to handle click for Adding Items
     $("#addItemToList").on('click', function() {
@@ -260,14 +287,44 @@ $(function() {
 
 	//Logout action handler
     $("#logout").on('click', function() {
-        firebaseref.unauth();
+        //firebaseref.unauth();
+        firebase.auth().signOut();
         userData = null;
         $(".welcome").html('');
         goToTab('#login');
     });
 
+
+
+	//--------------------------------------- Callback for loginCallback API  ---------------------------------------
+
 	//Callback for authWithPassword API Call
-	var loginCallback = function(error,authData)
+	// var loginCallback = function(error,authData)
+	// {
+	// 	if (error)
+	// 	{
+	// 		console.log("Login Failed!", error);
+	// 		$("#login-btn").parent().find('.status').html("Login Failed!:" + error).show();
+  //       }
+	// 	else
+	// 	{
+	// 		console.log("Authenticated successfully with payload:", authData);
+	// 		$("#login-btn").parent().find('.status').html("You are logged in as:" + authData.uid).show();
+  //       }
+  //
+	// }
+
+
+
+  // var loginCallback = firebase.auth().signInWithEmailAndPassword(email, password).then(function(result) {
+  //   console.log("Authenticated successfully with payload:", result.user);
+  //   $("#login-btn").parent().find('.status').html("You are logged in as:" + result.user.uid).show();
+  // }).catch(function(error) {
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  // });
+
+  var loginCallback = function(error,user)
 	{
 		if (error)
 		{
@@ -276,34 +333,90 @@ $(function() {
         }
 		else
 		{
-			console.log("Authenticated successfully with payload:", authData);
-			$("#login-btn").parent().find('.status').html("You are logged in as:" + authData.uid).show();
+			console.log("Authenticated successfully with payload:", user);
+			$("#login-btn").parent().find('.status').html("You are logged in as:" + user.uid).show();
         }
+
 	}
 
-	//Callback for createUser API Call
-	var signupLoginCallback = function(error,authData)
-	{
-		if (error)
-		{
-			console.log("Login Failed!", error);
-		}
-		else
-		{
-			console.log("Authenticated successfully with payload:", authData);
-			addUserName(userData.uid);
-			goToTab("#lists");
-		}
-	}
+
+	//--------------------------------------- Callback for createUser API Call ---------------------------------------
+  	//Callback for createUser API Call
+  	// var signupLoginCallback = function(error,authData)
+  	// {
+  	// 	if (error)
+  	// 	{
+  	// 		console.log("Login Failed!", error);
+  	// 	}
+  	// 	else
+  	// 	{
+  	// 		console.log("Authenticated successfully with payload:", authData);
+  	// 		addUserName(userData.uid);
+  	// 		goToTab("#lists");
+  	// 	}
+  	// }
+
+
+
+  // var signupLoginCallback = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(result) {
+  //   console.log("Authenticated successfully with payload:", result.user);
+  //   addUserName(result.user.uid);
+  //   goToTab("#lists");
+  // }).catch(function(error){
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  // });
+
+  //Callback for createUser API Call
+  var signupLoginCallback = function(error,user)
+  {
+  	if (error)
+  	{
+  		console.log("Login Failed!", error);
+  	}
+  	else
+  	{
+  		console.log("Authenticated successfully with payload:", user);
+  		addUserName(userData.uid);
+  		goToTab("#lists");
+  	}
+  }
+
+
 
 	//Function to log in a user using email and password.
-	var loginUser = function(email,password,callback)
-	{
-		firebaseref.authWithPassword({
-            email: email,
-            password: password
-        }, callback);
-	}
+	// var loginUser = function(email,password,callback)
+	// {
+	// 	firebaseref.authWithPassword({
+  //           email: email,
+  //           password: password
+  //       }, callback);
+	// }
+
+  // var loginUser = firebase.auth().signInWithEmailAndPassword(email, password).then(function(result){
+  //     var uid = result.user.uid;
+  //   }).catch(function(error) {
+  //     var errorMessage = error.message;
+  //   });
+
+    // var loginUser = firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    //       // Handle Errors here.
+    //       var errorCode = error.code;
+    //       var errorMessage = error.message;
+    //
+    //       if (errorCode === 'auth/wrong-password') {
+    //         console.log(error);
+    //     }
+    //   }
+
+    var loginUser = function(email,password,callback) {
+      firebase.auth().signInWithEmailAndPassword({
+        email: email,
+        password: password
+      }, callback);
+    }
+
+
 
 	//Handling Login Process
     $("#login-btn").on('click', function() {
@@ -317,7 +430,7 @@ $(function() {
 
         var email = $("#email").val();
         var password = $("#password").val();
-        firebaseref.createUser({
+        firebase.auth().createUserWithEmailAndPassword({
             email: email,
             password: password
         },
@@ -329,13 +442,13 @@ $(function() {
             } else {
                 console.log("Successfully created user account with uid:", userData.uid);
                 $("#signup-btn").parents("#register").find('.status').html("Successfully created user account with uid:" + userData.uid).show();
-                firebaseref.authWithPassword({
+                //firebaseref.authWithPassword(
+                firebase.auth().signInWithEmailAndPassword({
                     email: email,
                     password: password,
                 },signupLoginCallback);
-
-            }
-        });
+              }
+            });
     });
 
 	//Pushing new items to Firebase list. This is called when a user click on "AddNewItem Button"
@@ -367,14 +480,23 @@ $(function() {
     }
 
 	//API call to remove items from Firebase
-    var removeItemFromFirebase = function(key) {
-        var itemRef = new Firebase('https://unityos-test.firebaseio.com/lists/sharedlist/items/' + key);
-        itemRef.remove();
+    // var removeItemFromFirebase = function(key) {
+    //     var itemRef = new Firebase('https://unityos-test.firebaseio.com/lists/sharedlist/items/' + key);
+    //     itemRef.remove();
+    // }
+
+    //Firebase 3.xx API call to remove items
+    var removeItemFromFirebase =  function(key) {
+      var itemRef = firebase.database().ref("lists/sharedlist/items/" + key);
+      itemRef.remove();
     }
 
+
+
 	//API call to update the existing item in Firebase with the latest CSS string.
+  //Firebase 3.xx
     var addCSSStringToItem = function(key, css) {
-        var itemRef = new Firebase('https://unityos-test.firebaseio.com/lists/sharedlist/items/' + key);
+        var itemRef = firebase.database().ref("lists/sharedlist/items/" + key);
         itemRef.update({
             css: css,
         });
@@ -386,7 +508,8 @@ $(function() {
         var name = $("#name").val();
 		if(!name)
 			name = userid;
-        var userRef = new Firebase('https://unityos-test.firebaseio.com/users/' + userid);
+        //var userRef = new Firebase('https://unityos-test.firebaseio.com/users/' + userid);
+        var userRef = firebase.database().ref("users/" + userid);
         userRef.set({
             full_name: name
         },

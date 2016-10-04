@@ -92,38 +92,23 @@
         <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
         <script>
           // Initialize Firebase
-          var config = {
+          var firebaseref = {
             apiKey: "AIzaSyCHpRD4BENRYrTyKsGHr4jJ_OIjFdkUN5I",
             authDomain: "unityos-test.firebaseapp.com",
             databaseURL: "https://unityos-test.firebaseio.com",
             storageBucket: "unityos-test.appspot.com",
             messagingSenderId: "872968420167"
           };
-          firebase.initializeApp(config);
+          firebase.initializeApp(firebaseref);
         </script>
 
         <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
 
-        <!-- Leave out Storage -->
-        <!-- <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-storage.js"></script> -->
-
-        <script>
-        var config = {
-          apiKey: "AIzaSyCHpRD4BENRYrTyKsGHr4jJ_OIjFdkUN5I",
-          authDomain: "unityos-test.firebaseapp.com",
-          databaseURL: "https://unityos-test.firebaseio.com"
-        };
-        var rootRef = firebase.database().ref();
-          firebase.initializeApp(config);
-        </script>
-
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript"src="https://www.gstatic.com/firebasejs/3.0.4/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.0.4/firebase.js"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script type="text/javascript" src="./firebasefunctions.js"></script>
-
-
     </body>
 </html>
