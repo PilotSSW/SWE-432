@@ -31,17 +31,17 @@
       <div class="row">
         <nav class="navbar navbar-inverse navbar-fixed">
           <ul class="nav nav-justified">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="home.html">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="Personal.html">Personal</a>
             </li>
             <li>
                 <a class="nav-link" href="#">Work</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Social</a>
+                <a class="nav-link" href="social.html">Social</a>
             </li>
             <li>
               <a class="nav-link" href="#">News</a>
@@ -102,7 +102,7 @@
               render: function () {
                   return (
                           <div>
-                              <h3>TODO</h3>
+                              <h3>Tasks </h3>
                               <TodoList items={this.state.items} removeItem={this.removeItem} onChange={this.onChange}/>
                               <button onClick={this.handleAdd}>New</button>
                           </div>
@@ -190,7 +190,7 @@
             update: function (info, element) {
               if (info.checked) {
                 element.checked = 'checked';
-              } else {
+              } else {a
                 element.checked = null;
               }
             },
