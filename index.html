@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+		<link href="/css/slack-chat.css" rel="stylesheet" />
+		<link href="/css/demo.css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>SlackChat</title>
+		<meta name="description" content="Provide your website visitors with help and support from #Slack">
+	</head>
+	<body>
+		<div class='container'>
+			<div class='page-header'>
+				<h2>SlackChat
+					<br><small>A support chat feature for your website that integrates with #Slack</small>
+				</h2>
+			</div>
+			<div class='row rowTop'>
+				<div class='col-sm-12'>
+					For instructions on installation, usage, download and issues, head to <a href="http://improvi.github.io/slack-chat">http://improvi.github.io/slack-chat</a>
+					<br><br>
+					To try a demo, enter the following fields and click on Try Now.
+				</div>
+			</div>
+			<div class='row rowTop'>
+				<div class='col-sm-12'>
+					<form class="form-horizontal" id="demoForm">
+					  <div class="form-group">
+					    <label for="apiToken" class="col-sm-3 control-label">Slack API Token:</label>
+					    <div class="col-sm-9">
+					      <input type="text" class="form-control" id="apiToken" placeholder="apiToken" required="required" value="" />
+					      <div class="help-text">Generate your Slack token <a href="https://api.slack.com/web" target="_blank">here</a>.</div>
+					    </div>
+					  </div>
+
+					  <div class="form-group">
+					    <label for="channelId" class="col-sm-3 control-label">Slack Channel ID:</label>
+					    <div class="col-sm-9">
+					      <input type="text" class="form-control" id="channelId" placeholder="Required"  required="required" value="">
+					      <div class="help-text"><a href="javascript:void(0);" id="listChannels">Click here</a> to list your channels.</div>
+					      <div class="well channel-list" style="display:none;"></div>
+					    </div>
+					  </div>
+					  <div class="form-group">
+    					<div class="col-sm-offset-3 col-sm-9">
+					  		<div class="checkbox">
+    							<label>
+      								<input type="checkbox" id="usePrivateChannel"> Use Private Channel <small> |  <b>Note: *</b> Bot User does not work with private channels.</small>
+    							</label>
+  					  		</div>
+						</div>
+					  </div>
+					  
+					  <div class="form-group hide" id="serverApi">
+					    <label for="serverApiGateway" class="col-sm-3 control-label">Server API Gateway:</label>
+					    <div class="col-sm-9">
+					      <input type="text" class="form-control" id="serverApiGateway" placeholder="Required" value="">
+					    </div>
+					  </div>
+
+					  <div class="form-group hide" id="invitedUsers">
+					    <label for="defaultInvitedUsers" class="col-sm-3 control-label">List of users to Invite:</label>
+					    <div class="col-sm-9">
+					      <input type="text" class="form-control" id="defaultInvitedUsers" placeholder="Optional" value="">
+					    </div>
+					  </div>
+					
+
+					  <div class="form-group">
+					    <label for="user" class="col-sm-3 control-label">Username:</label>
+					    <div class="col-sm-9">
+					      <input type="text" class="form-control" id="user" placeholder="Required"  required="required" value="DemoUser">
+					    </div>
+					  </div>
+
+					  <div class="form-group">
+					    <label for="sysUser" class="col-sm-3 control-label">Support Name:</label>
+					    <div class="col-sm-9">
+					      <input type="text" class="form-control" id="sysUser" placeholder="Required"  required="required" value="SlackChatDemo">
+					    </div>
+					  </div>
+
+					  <div class="form-group">
+					    <label for="botUser" class="col-sm-3 control-label">Bot User Name:</label>
+					    <div class="col-sm-9">
+					      <input type="text" class="form-control" id="botUser" placeholder="Required"  required="required" value="DemoBot">
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <div class="col-sm-offset-3 col-sm-9">
+					      <button class="btn btn-danger btn-md btn-default btn-try">Try Now</button>&emsp;
+					      <a class='btn btn-md btn-info' href='https://github.com/improvi/slack-chat/zipball/master'>Download</a>
+					    </div>
+					  </div>
+					</form>
+				</div>
+			</div>
+			<footer class='center-txt'>
+				Made with <i class="fa fa-fw fa-heart"></i> by <a href='http://www.improvi.in'>Improvi Technologies</a>
+			</footer>
+		</div>
+		<div class="message-box" data-toggle="tooltip" title="Need help?">
+			<a href="javascript:void(0);" class="message-box-icon">
+				<i class="fa fa-fw fa-question-circle"></i>
+				<div class="badge badge-danger slack-message-count"></div>
+			</a>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+		<script type="text/javascript" src="/js/slack-chat.js"></script>
+		<script>
+			$(document).ready(function () {
+
+				$('.message-box > a').slackChat('destroy');
+				$('.message-box').hide();
+
+				$('[data-toggle=tooltip]').tooltip();
+
+				$('.btn-try').on('click', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+
+					$('.message-box > a').slackChat('destroy');
+					$('.message-box').hide();
+
+					slackChatOptions = {
+						apiToken: $('#apiToken').val()
+						,channelId: $('#channelId').val()
+						,user: $('#user').val()
+						,userLink: 'http://www.google.com'
+						,userId: 'TEST-USER'
+						,userImg: '/img/user-icon-small.jpg'
+						,defaultSysImg: '/img/improvi.png'
+						,defaultSysUser: $('#sysUser').val()
+						,botUser: $('#botUser').val()
+						,elementToDisable: $('.message-box')
+						,disableIfAway: false
+						,webCache: true
+						,debug:false
+						,privateChannel: false
+						,badgeElement: '.slack-message-count'
+						,useUserDetails: false
+						,defaultInvitedUsers: []
+						
+					};
+					
+					if($('#usePrivateChannel').prop('checked')) {
+						slackChatOptions.privateChannel = true;
+						slackChatOptions.serverApiGateway = $('#serverApiGateway').val();
+						slackChatOptions.defaultInvitedUsers = $('#defaultInvitedUsers').val().split(",");
+					}
+
+					$('.message-box > a').slackChat(slackChatOptions);
+
+					$('.message-box').show();
+
+					return false;
+
+				});
+
+				//load from localStorage
+				for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+
+					if(localStorage.key(i) == 'scParams') {
+						var scParams = JSON.parse(localStorage.getItem( localStorage.key( i ) ));
+
+						if(scParams.apiToken) $('#apiToken').val(scParams.apiToken);
+						if(scParams.channelId) $('#channelId').val(scParams.channelId);
+						if(scParams.user) $('#user').val(scParams.user);
+						if(scParams.defaultSysUser) $('#sysUser').val(scParams.defaultSysUser);
+						if(scParams.botUser) $('#botUser').val(scParams.botUser);
+						if(scParams.serverApiGateway) $('#serverApiGateway').val(scParams.serverApiGateway);
+						if(scParams.defaultInvitedUsers) $('#defaultInvitedUsers').val(scParams.defaultInvitedUsers);
+					}
+				}
+
+				//load the channels
+				$('#listChannels').on("click", function () {
+					$('.channel-list').html('').hide();
+
+					if($('#apiToken').val() == '') {
+						$('.channel-list').html("Invalid Slack API Token").show();
+						return false;
+					}
+
+					$.ajax({
+						url: "https://slack.com/api/channels.list"
+						,type: "POST"
+						,dataType: "json"
+						,data: {
+							token: $('#apiToken').val()
+						}
+						,success: function (resp) {
+							if(resp.ok) {
+								if(resp.channels.length) {
+									var html = "<table class='table table-condensed table-striped table-bordered'><tr><th>Channel Name</td><td>Channel ID</td>";
+									for(var i=0; i< resp.channels.length;i++) {
+										if(!resp.channels[i].is_archived)
+											html += "<tr><td>" + resp.channels[i].name + "</td><td><span class='channel-id'>" + resp.channels[i].id + "</span><a class='btn btn-xs btn-danger use-channel pull-right'>Use</a></td>";
+									}
+									html += "</table>";
+									$('.channel-list').html(html).show();
+
+									$('.use-channel').off('click');
+									$('.use-channel').on('click', function () {
+												
+										$('#channelId').val($(this).parent().find('.channel-id').text());
+										$('.channel-list').hide();
+									
+									});
+								}
+								else
+									$('.channel-list').html("No channels found").show();	
+							}
+						}
+					});	
+				});
+				
+				$('#usePrivateChannel').on('change', function () {
+					if($(this).prop('checked')) {
+						$("#serverApi").removeClass("hide");
+						$("#invitedUsers").removeClass("hide");
+					}
+					else {
+						$("#serverApi").addClass("hide");
+						$("#invitedUsers").addClass("hide");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

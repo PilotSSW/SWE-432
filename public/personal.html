@@ -23,6 +23,10 @@
     <!-- Firepad -->
     <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
     <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+
+     <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
   	<title>SWE-432</title>
   </head>
 
@@ -38,13 +42,13 @@
                 <a class="nav-link" href="Personal.html">Personal</a>
             </li>
             <li>
-                <a class="nav-link" href="#">Work</a>
+                <a class="nav-link" href="Work.html">Work</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="social.html">Social</a>
             </li>
-            <li>
-              <a class="nav-link" href="#">News</a>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">News</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
@@ -66,15 +70,16 @@
           messagingSenderId: "653568901959"
         };
         firebase.initializeApp(config);
+
         var TodoList = React.createClass({
             render: function () {
                 var _this = this; //In the subcomponent, "this" will refer to window, so need to save "this" here
                 var createItem = function (item, key) {
                     return (<div key={key}>
-                            <input type="checkbox" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.text}/>
-                            <input type="text" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.text}/>
-                            <input type="time" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.text}/>
-                            <input type="date" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.text}/>
+                            <input type="checkbox" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.checked}/>
+                            <input type="text" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.value}/>
+                            <input type="time" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.value}/>
+                            <input type="date" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.value}/>
                         <button onClick={_this.props.removeItem.bind(null, item['.key'])}>&#x2716;</button>
                     </div>);
                 };

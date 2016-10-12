@@ -25,6 +25,9 @@
       };
       firebase.initializeApp(config);
     </script>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   	<title>SWE-432</title>
   </head>
 
@@ -40,7 +43,7 @@
                 <a class="nav-link" href="personal.html">Personal</a>
             </li>
             <li>
-                <a class="nav-link" href="#">Work</a>
+                <a class="nav-link" href="work.html">Work</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="social.html">Social</a>
@@ -54,6 +57,29 @@
           </ul>
         </nav>
       </div>
+      <div id = "home">
+      </div>
+      <script type="text/babel">
+        class HelloWorld extends React.Component {
+          render() {
+            return (
+              <p>
+                <h5>Hello, <input type="text" placeholder="Your name here" />!</h5>
+                <h5>It is </h5><h3>{this.props.date.toTimeString()}</h3>
+              </p>
+            );
+          }
+        }
+
+        function tick() {
+          ReactDOM.render(
+            <HelloWorld date={new Date()} />,
+            document.getElementById('home')
+          );
+        }
+
+        setInterval(tick, 500); 
+      </script>
     </div>
     <footer class="footer">
       <div class="container-fluid">

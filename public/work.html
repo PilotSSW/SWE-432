@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+  	<meta charset="UTF-8">
+  	<meta name="description"
+  	content="Static skeleton page for SWE Project done in tutorial format"/>
+  	<meta name="keywords"
+  	content="html5 tutorial, gmu swe432, html5"/>
+  	<meta name="robots" content="index,follow"/>
+  	<link rel="icon" href="img/terminal.png"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+    <script type="javascript" src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/tasklist.css">
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+
+    <!-- CodeMirror -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
+
+    <!-- Firepad -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
+    <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+
+     <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  	<title>SWE-432</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed header">
+          <ul class="nav nav-justified">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="personal.html">Personal</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="work.html">Work</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="social.html">Social</a>
+            </li>
+            <li>
+              <a class="nav-link" href="news.html">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class = "row" id="slackContainer">
+        <div id = "slackReact"></div>
+        <script type ="text/babel">
+          ReactDom.render(http://rss.cnn.com/rss/cnn_topstories.rss)
+        </script>
+        
+      </div>
+    </div> 
+    <footer>
+      <div class="container-fluid">
+        <span>Authors: Gordon Ngo, Sean Wolford</span>
+      </div>
+    </footer>
+    </div>
+  </body>
+</html>
