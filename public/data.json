@@ -1,0 +1,14 @@
+[
+	{
+		"label": "Facebook", "value": 250, "color": "#3b5998"
+	},
+	{
+		"label": "Twitter", "value": 197, "color": "#1dcaff"
+	},
+	{
+		"label": "Slack", "value": 690, "color": "#2A304A"
+	},
+  	{
+    	"label": "Spotify", "value": 570, "color": "#84bd00"
+  	}
+]

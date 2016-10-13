@@ -8,7 +8,7 @@
   	content="html5 tutorial, gmu swe432, html5"/>
   	<meta name="robots" content="index,follow"/>
     <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
-    <script type="javascript" src="../js/bootstrap.js"></script>
+    <script type="javascript" src="assets/js/bootstrap.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -50,6 +50,9 @@
               <a class="nav-link" href="news.html">News</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="about-data.html">Usage</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
             </li>
           </ul>
@@ -57,35 +60,122 @@
       </div>
 
       <div class="row" id="newsContainer">
-        <div id="newsFeed">
-          <h4 style="color:red">CNN - Top Stories</h3>
+        <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex; overflow-y: auto">
           <ul class="CNNRSS">
+            <h3 style="color:red">CNN - Top Stories</h3>
           </ul>
-        </div>
-        <script type ="text/babel">
-          $(document).ready(function() {
-            var rssFeed = $('ul.CNNRSS');
-            var cnnfeed = "http://rss.cnn.com/rss/cnn_topstories.rss";
-            var rssList = $.ajax(cnnfeed, {
-                accepts:{
-                    xml:"application/rss+xml"
-                },
-                dataType:"xml",
-                success:function(data) {
-                    //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
+          <script type ="text/babel">
+            $(document).ready(function() {
+              var rssFeed = $('ul.CNNRSS').attr('style','overflow-y:auto');
+              var cnnfeed = "http://rss.cnn.com/rss/cnn_topstories.rss";
+              var rssList = $.ajax(cnnfeed, {
+                  accepts:{
+                      xml:"application/rss+xml"
+                  },
+                  dataType:"xml",
+                  success:function(data) {
+                      //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
 
-                    var eachFeed = $(data).find("item").each(function () { // or "item" or whatever suits your feed
-                        var el = $(this);
-                        var rssItem = $('<li/>').attr('class','rssItem').appendTo(rssFeed);
-                        var title = $('<h4>').appendTo(rssItem);
-                        var link = $('<a>').attr('href', el.find("link").text()).text(el.find("title").text()).appendTo(title);
-                        var body = $('<div/>').html(el.find("description").text()).appendTo(rssItem);
-                    });
-                }   
+                      var eachFeed = $(data).find("item").each(function () { // or "item" or whatever suits your feed
+                          var el = $(this);
+                          var rssItem = $('<li/>').attr('class','rssItem').appendTo(rssFeed);
+                          var title = $('<h4>').appendTo(rssItem);
+                          var link = $('<a>').attr('href', el.find("link").text()).text(el.find("title").text()).appendTo(title);
+                          var body = $('<div/>').html(el.find("description").text()).appendTo(rssItem);
+                      });
+                  }   
+              });
+              console.log(rssList);  
             });
-            console.log(rssList);  
-          });
-        </script>
+          </script>
+        </div>
+        <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex;">
+          <ul class="NYTRSS">
+            <h3 style="color:blue">The New York Times - Top Stories</h3>
+          </ul>
+          <script type ="text/babel">
+            $(document).ready(function() {
+              var rssFeed = $('ul.NYTRSS');
+              var nytfeed = "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml";
+              var rssList = $.ajax(nytfeed, {
+                  accepts:{
+                      xml:"application/rss+xml"
+                  },
+                  dataType:"xml",
+                  success:function(data) {
+                      //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
+
+                      var eachFeed = $(data).find("item").each(function () { // or "item" or whatever suits your feed
+                          var el = $(this);
+                          var rssItem = $('<li/>').attr('class','rssItem').appendTo(rssFeed);
+                          var title = $('<h4>').appendTo(rssItem);
+                          var link = $('<a>').attr('href', el.find("link").text()).text(el.find("title").text()).appendTo(title);
+                          var body = $('<div/>').html(el.find("description").text()).appendTo(rssItem);
+                      });
+                  }   
+              });
+              console.log(rssList);  
+            });
+          </script>
+        </div>
+        <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex;">
+          <ul class="YAHOOF">
+            <h3 style="color:purple">Yahoo Finance!</h3>
+          </ul>
+          <script type ="text/babel">
+            $(document).ready(function() {
+              var rssFeed = $('ul.YAHOOF');
+              var yahooffeed = "http://apps.shareholder.com/rss/rss.aspx?channels=632&companyid=YHOO&sh_auth=3011579773%2E0%2E0%2E42657%2Ef1f2fcbf22400b487b167774a6af30f3";
+              var rssList = $.ajax(yahooffeed, {
+                  accepts:{
+                      xml:"application/rss+xml"
+                  },
+                  dataType:"xml",
+                  success:function(data) {
+                      //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
+
+                      var eachFeed = $(data).find("item").each(function () { // or "item" or whatever suits your feed
+                          var el = $(this);
+                          var rssItem = $('<li/>').attr('class','rssItem').appendTo(rssFeed);
+                          var title = $('<h4>').appendTo(rssItem);
+                          var link = $('<a>').attr('href', el.find("link").text()).text(el.find("title").text()).appendTo(title);
+                          var body = $('<div/>').html(el.find("description").text()).appendTo(rssItem);
+                      });
+                  }   
+              });
+              console.log(rssList);  
+            });
+          </script>
+        </div>
+        <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex;">
+          <ul class="REUTTECH">
+            <h3 style="color:orange">Reuters - Technology</h3>
+          </ul>
+          <script type ="text/babel">
+            $(document).ready(function() {
+              var rssFeed = $('ul.REUTTECH');
+              var techfeed = "http://feeds.reuters.com/reuters/technologyNews";
+              var rssList = $.ajax(techfeed, {
+                  accepts:{
+                      xml:"application/rss+xml"
+                  },
+                  dataType:"xml",
+                  success:function(data) {
+                      //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
+
+                      var eachFeed = $(data).find("item").each(function () { // or "item" or whatever suits your feed
+                          var el = $(this);
+                          var rssItem = $('<li/>').attr('class','rssItem').appendTo(rssFeed);
+                          var title = $('<h4>').appendTo(rssItem);
+                          var link = $('<a>').attr('href', el.find("link").text()).text(el.find("title").text()).appendTo(title);
+                          var body = $('<div/>').html(el.find("description").text()).appendTo(rssItem);
+                      });
+                  }   
+              });
+              console.log(rssList);  
+            });
+          </script>
+        </div>
       </div>
     </div> 
     <footer>
