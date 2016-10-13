@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+  	<meta charset="UTF-8">
+  	<meta name="description"
+  	content="Static skeleton page for SWE Project done in tutorial format"/>
+  	<meta name="keywords"
+  	content="html5 tutorial, gmu swe432, html5"/>
+  	<meta name="robots" content="index,follow"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+    <script type="javascript" src="assets/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/tasklist.css">
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+
+    <!-- CodeMirror -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
+
+    <!-- Firepad -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
+    <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+  	<title>SWE-432</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed header">
+          <ul class="nav nav-justified">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="personal.html">Personal</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="work.html">Work</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="social.html">Social</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="news.html">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about-data.html">Usage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="row" id="newsContainer">
+        <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex; overflow-y: auto">
+          <ul class="CNNRSS">
+            <h3 style="color:red">CNN - Top Stories</h3>
+          </ul>
+          <script type ="text/babel">
+            $(document).ready(function() {
+              var rssFeed = $('ul.CNNRSS').attr('style','overflow-y:auto');
+              var cnnfeed = "http://rss.cnn.com/rss/cnn_topstories.rss";
+              var rssList = $.ajax(cnnfeed, {
+                  accepts:{
+                      xml:"application/rss+xml"
+                  },
+                  dataType:"xml",
+                  success:function(data) {
+                      //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
+
+                      var eachFeed = $(data).find("item").each(function () { // or "item" or whatever suits your feed
+                          var el = $(this);
+                          var rssItem = $('<li/>').attr('class','rssItem').appendTo(rssFeed);
+                          var title = $('<h4>').appendTo(rssItem);
+                          var link = $('<a>').attr('href', el.find("link").text()).text(el.find("title").text()).appendTo(title);
+                          var body = $('<div/>').html(el.find("description").text()).appendTo(rssItem);
+                      });
+                  }   
+              });
+              console.log(rssList);  
+            });
+          </script>
+        </div>
+        <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex;">
+          <ul class="NYTRSS">
+            <h3 style="color:blue">The New York Times - Top Stories</h3>
+          </ul>
+          <script type ="text/babel">
+            $(document).ready(function() {
+              var rssFeed = $('ul.NYTRSS');
+              var nytfeed = "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml";
+              var rssList = $.ajax(nytfeed, {
+                  accepts:{
+                      xml:"application/rss+xml"
+                  },
+                  dataType:"xml",
+                  success:function(data) {
+                      //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
+
+                      var eachFeed = $(data).find("item").each(function () { // or "item" or whatever suits your feed
+                          var el = $(this);
+                          var rssItem = $('<li/>').attr('class','rssItem').appendTo(rssFeed);
+                          var title = $('<h4>').appendTo(rssItem);
+                          var link = $('<a>').attr('href', el.find("link").text()).text(el.find("title").text()).appendTo(title);
+                          var body = $('<div/>').html(el.find("description").text()).appendTo(rssItem);
+                      });
+                  }   
+              });
+              console.log(rssList);  
+            });
+          </script>
+        </div>
+        <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex;">
+          <ul class="YAHOOF">
+            <h3 style="color:purple">Yahoo Finance!</h3>
+          </ul>
+          <script type ="text/babel">
+            $(document).ready(function() {
+              var rssFeed = $('ul.YAHOOF');
+              var yahooffeed = "http://apps.shareholder.com/rss/rss.aspx?channels=632&companyid=YHOO&sh_auth=3011579773%2E0%2E0%2E42657%2Ef1f2fcbf22400b487b167774a6af30f3";
+              var rssList = $.ajax(yahooffeed, {
+                  accepts:{
+                      xml:"application/rss+xml"
+                  },
+                  dataType:"xml",
+                  success:function(data) {
+                      //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
+
+                      var eachFeed = $(data).find("item").each(function () { // or "item" or whatever suits your feed
+                          var el = $(this);
+                          var rssItem = $('<li/>').attr('class','rssItem').appendTo(rssFeed);
+                          var title = $('<h4>').appendTo(rssItem);
+                          var link = $('<a>').attr('href', el.find("link").text()).text(el.find("title").text()).appendTo(title);
+                          var body = $('<div/>').html(el.find("description").text()).appendTo(rssItem);
+                      });
+                  }   
+              });
+              console.log(rssList);  
+            });
+          </script>
+        </div>
+        <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex;">
+          <ul class="REUTTECH">
+            <h3 style="color:orange">Reuters - Technology</h3>
+          </ul>
+          <script type ="text/babel">
+            $(document).ready(function() {
+              var rssFeed = $('ul.REUTTECH');
+              var techfeed = "http://feeds.reuters.com/reuters/technologyNews";
+              var rssList = $.ajax(techfeed, {
+                  accepts:{
+                      xml:"application/rss+xml"
+                  },
+                  dataType:"xml",
+                  success:function(data) {
+                      //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
+
+                      var eachFeed = $(data).find("item").each(function () { // or "item" or whatever suits your feed
+                          var el = $(this);
+                          var rssItem = $('<li/>').attr('class','rssItem').appendTo(rssFeed);
+                          var title = $('<h4>').appendTo(rssItem);
+                          var link = $('<a>').attr('href', el.find("link").text()).text(el.find("title").text()).appendTo(title);
+                          var body = $('<div/>').html(el.find("description").text()).appendTo(rssItem);
+                      });
+                  }   
+              });
+              console.log(rssList);  
+            });
+          </script>
+        </div>
+      </div>
+    </div> 
+    <footer>
+      <div class="container-fluid">
+        <span>Authors: Gordon Ngo, Sean Wolford</span>
+      </div>
+    </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+  	<meta charset="UTF-8">
+  	<meta name="description"
+  	content="Static skeleton page for SWE Project done in tutorial format"/>
+  	<meta name="keywords"
+  	content="html5 tutorial, gmu swe432, html5"/>
+  	<meta name="robots" content="index,follow"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+    <script type="javascript" src="assets/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/tasklist.css">
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAwzzIJohCYMEAphX5CRdvukMfP-BmLJrM",
+        authDomain: "unityos-2ed4c.firebaseapp.com",
+        databaseURL: "https://unityos-2ed4c.firebaseio.com",
+        storageBucket: "",
+        messagingSenderId: "653568901959"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+  	<title>SWE-432</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed">
+          <ul class="nav nav-justified">
+            <li class="nav-item active">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="personal.html">Personal</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="work.html">Work</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="social.html">Social</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about-data.html">Usage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div id = "home">
+      </div>
+      <div id = "unity">
+      </div>
+      <script type="text/babel">
+        class HelloWorld extends React.Component {
+          render() {
+            return (
+              <p>
+                <h5>Hello, <input type="text" placeholder="Your name here" />!</h5>
+                <h5>It is </h5><h3>{this.props.date.toTimeString()}</h3>
+              </p>
+            );
+          }
+        }
+
+        function tick() {
+          ReactDOM.render(
+            <HelloWorld date={new Date()} />,
+            document.getElementById('home')
+          );
+        }
+
+        setInterval(tick, 500); 
+      </script>
+    </div>
+    <footer class="footer">
+      <div class="container-fluid">
+        <span>Authors: Gordon Ngo, Sean Wolford</span>
+      </div>
+    </footer>
+  </body>
+</html>

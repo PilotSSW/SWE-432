@@ -1,0 +1,60 @@
+{
+  "name": "slack",
+  "version": "7.7.3",
+  "description": "Slack API client written in JS",
+  "main": "methods/index",
+  "browser": {
+    "./methods/_exec.js": "./methods/_exec-browser.js",
+    "./methods/rtm.client.js": "./methods/rtm.client-browser.js",
+    "./test/_env.js": "./test/_env-browser.js"
+  },
+  "scripts": {
+    "start": "npm run build && ./scripts/repl",
+    "build": "rimraf methods && babel src --out-dir methods && cpr src/api.json methods/api.json",
+    "test": "npm run build && ./scripts/test",
+    "btest": "npm run build && ./scripts/test-browser | browser-run | tap-spec",
+    "prepublish": "npm run build",
+    "generate": "./scripts/generate-all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smallwins/slack.git"
+  },
+  "keywords": [
+    "slack",
+    "api",
+    "client"
+  ],
+  "author": "Brian LeRoux <b@brian.io>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/smallwins/slack/issues"
+  },
+  "homepage": "https://github.com/smallwins/slack#readme",
+  "devDependencies": {
+    "babel-cli": "^6.3.15",
+    "babel-plugin-add-module-exports": "^0.1.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browser-run": "^3.0.5",
+    "browserify": "^13.0.1",
+    "chalk": "^1.1.1",
+    "cheerio": "^0.20.0",
+    "cpr": "^1.1.2",
+    "envify": "^3.4.0",
+    "glob": "^7.0.5",
+    "lodash": "^4.5.0",
+    "mustache": "^2.2.1",
+    "node-env-file": "^0.1.8",
+    "rimraf": "^2.5.3",
+    "tap": "^5.8.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
+  },
+  "dependencies": {
+    "httpplease": "^0.16.4",
+    "query-string": "^4.2.2",
+    "request": "^2.72.0",
+    "ws": "^1.1.1"
+  }
+}

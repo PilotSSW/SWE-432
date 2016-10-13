@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "runFeed": "browserify -t reactify app/app.js > build/app.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,21 @@
   },
   "homepage": "https://github.com/PilotSSW/SWE-432#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "feed-read": "0.0.1",
+    "lodash": "^3.8.0",
+    "querystring": "^0.2.0",
+    "react": "^0.13.3",
+    "react-slack-chat": "^0.1.0",
+    "request": "^2.75.0"
   },
   "devDependencies": {
-    "nodemon": "^1.10.2"
+    "browserify": "^13.1.0",
+    "karma-browserify": "^5.1.0",
+    "nodemon": "^1.10.2",
+    "react-tools": "^0.13.3",
+    "reactify": "^1.1.1",
+    "watchify": "^3.7.0"
   }
 }
