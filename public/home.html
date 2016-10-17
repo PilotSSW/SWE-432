@@ -98,7 +98,15 @@
       <div id = "unity">
       </div>
       <script type="text/babel">
-        class HelloWorld extends React.Component {
+        var name = React.createClass({
+            getInitialState: function() {
+                return "";
+            },
+
+            componentDidMount: function() {
+                this.state.
+            },
+
           render() {
             return (
               <p>
@@ -107,7 +115,7 @@
               </p>
             );
           }
-        }
+        });
 
         function tick() {
           ReactDOM.render(

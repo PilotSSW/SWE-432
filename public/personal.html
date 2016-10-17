@@ -1,34 +1,35 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-  	<meta charset="UTF-8">
-  	<meta name="description"
-  	content="Static skeleton page for SWE Project done in tutorial format"/>
-  	<meta name="keywords"
-  	content="html5 tutorial, gmu swe432, html5"/>
-  	<meta name="robots" content="index,follow"/>
-  	<link rel="icon" href="img/terminal.png"/>
-    <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
-    <script type="javascript" src="assets/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/tasklist.css">
-    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+        <meta charset="UTF-8">
+        <meta name="description"
+        content="Static skeleton page for SWE Project done in tutorial format"/>
+        <meta name="keywords"
+        content="html5 tutorial, gmu swe432, html5"/>
+        <meta name="robots" content="index,follow"/>
+        <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+        <script type="javascript" src="assets/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+        <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/tasklist.css">
+        <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+        <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/reactfire/1.0.0/reactfire.min.js"></script>
 
-    <!-- CodeMirror -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
 
-    <!-- Firepad -->
-    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
-    <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
 
-     <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
-    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-  	<title>SWE-432</title>
-  </head>
+        <!-- Firepad -->
+        <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
+        <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+
+        <title>SWE-432</title>
+    </head>
 
   <body onload="init()">
     <div class="container-fluid">
@@ -61,34 +62,36 @@
       </div>
 
       <div class="content">
-        <div id="container"><div data-reactroot=""><h3>Tasks</h3><ul><div>Done: <input type="checkbox" name="Is Done?">&nbsp&nbsp&nbsp&nbsp<input id="task" type="text" placeholder="Task"><input id="time" type="time"><input id="date" type="date"><button>✖</button></div></ul><button>New</button></div></div>
-        <script type="text/babel">
-        "use strict";
-        // Initialize Firebase
-        var config = {
-          apiKey: "AIzaSyAwzzIJohCYMEAphX5CRdvukMfP-BmLJrM",
-          authDomain: "unityos-2ed4c.firebaseapp.com",
-          databaseURL: "https://unityos-2ed4c.firebaseio.com",
-          storageBucket: "unityos-2ed4c.appspot.com",
-          messagingSenderId: "653568901959"
-        };
-        firebase.initializeApp(config);
+        <div id="thelist" class="row">
 
-        var TodoList = React.createClass({
-            render: function () {
-                var _this = this; //In the subcomponent, "this" will refer to window, so need to save "this" here
-                var createItem = function (item, key) {
-                    return (<div key={key}>
-                            <input type="checkbox" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.checked}/>
-                            <input type="text" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.value}/>
-                            <input type="time" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.value}/>
-                            <input type="date" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.value}/>
-                        <button onClick={_this.props.removeItem.bind(null, item['.key'])}>&#x2716;</button>
-                    </div>);
-                };
-                return <ul>{this.props.items.map(createItem)}</ul>;
-            }
-          });
+        </div>
+        <script type="text/babel">
+            "use strict";
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyA2d80wrdiDQ3Vw999T8HqvYXcG8KBVcEs",
+                authDomain: "unityos-88808.firebaseapp.com",
+                databaseURL: "https://unityos-88808.firebaseio.com",
+                storageBucket: "unityos-88808.appspot.com",
+                messagingSenderId: "761255611285"
+            };
+            firebase.initializeApp(config);
+
+            var TodoList = React.createClass({
+                render: function () {
+                    var _this = this; //In the subcomponent, "this" will refer to window, so need to save "this" here
+                    var createItem = function (item, key) {
+                        return (<div key={key}>
+                                    <input type="checkbox" id="checkbox" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.checked}/>
+                                    <input type="text" id="task" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.task}/>
+                                    <input type="time" id="time" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.time}/>
+                                    <input type="date" id="date" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.date}/>
+                                    <button onClick={_this.props.removeItem.bind(null, item['.key'])}>&#x2716;</button>
+                                </div>);
+                    };
+                    return <ul>{this.props.items.map(createItem)}</ul>;
+                }
+            });
           var TodoApp = React.createClass({
               mixins: [ReactFireMixin],
               getInitialState: function () {
@@ -98,140 +101,147 @@
                   this.fireRef = firebase.database().ref('todos');
                   this.bindAsArray(this.fireRef, "items");
               },
+              handleChange: function (key) {
+                  return function (e) {
+                      var state = {};
+                      state[key] = e.target.value;
+                      this.setState(state);
+                  }.bind(this);
+              },
               onChange: function (fireKey, event) {
-                  this.fireRef.child(fireKey).set({"checkbox": event.target.value, text": event.target.value, "time":event.target.value, "date":event.target.value});
+                  this.fireRef.child(fireKey).set({"checkbox": event.target.checked, "text": event.target.task, "time":event.target.time, "date":event.target.date});
               },
               removeItem: function (key) {
                   this.fireRef.child(key).remove();
               },
               handleAdd: function (e) {
-                  this.fireRef.push({"checkbox": "nil", text": "", "time", "date"});
+                  this.fireRef.push({"checkbox": "", "task": "", "time": "", "date": "" });
               },
-              render: function () {
-                  return (
-                          <div>
-                              <h3>Tasks </h3>
-                              <TodoList items={this.state.items} removeItem={this.removeItem} onChange={this.onChange}/>
-                              <button onClick={this.handleAdd}>New</button>
-                          </div>
-                  );
+              render: function() {
+                      return (
+                              <div>
+                                  <h3>Tasks </h3>
+                                  <TodoList items={this.state.items} removeItem={this.removeItem}
+                                            onChange={this.onChange}/>
+                                  <button onClick={this.handleAdd}>New</button>
+                              </div>
+                      );
               }
           });
+          ReactDOM.render(<TodoApp />, document.getElementById('thelist'));
+        </script>
 
-          ReactDOM.render(<TodoApp />, document.getElementById('container'));
-        </script>
       </div>
-    <div><h3>Journal</h3></div>
-    <div id="firepad-container"></div>
-    <script>
-        function init() {
-          //// Initialize Firebase.
-          //// TODO: replace with your Firebase project configuration.
-          var config = {
-            apiKey: "AIzaSyAwzzIJohCYMEAphX5CRdvukMfP-BmLJrM",
-            authDomain: "unityos-2ed4c.firebaseapp.com",
-            databaseURL: "https://unityos-2ed4c.firebaseio.com",
-            storageBucket: "unityos-2ed4c.appspot.com",
-            messagingSenderId: "653568901959"
-          };
-          firebase.initializeApp(config);
-          //// Get Firebase Database reference.
-          var firepadRef = getExampleRef();
-          //// Create CodeMirror (with lineWrapping on).
-          var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true });
-          //// Create Firepad (with rich text toolbar and shortcuts enabled).
-          var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-              { richTextToolbar: true, richTextShortcuts: true });
-          //// Initialize contents.
-          firepad.on('ready', function() {
-            if (firepad.isHistoryEmpty()) {
-              firepad.setHtml(
-                  '<span style="font-size: 20px;">Rich-text editing with <span style="color: red">Firepad!</span></span><br/>\n' +
-                  '<br/>' +
-                  '<div style="font-size: 14px">' +
-                  'Supports:<br/>' +
-                  '<ul>' +
-                    '<li>Different ' +
-                      '<span style="font-family: impact">fonts,</span>' +
-                      '<span style="font-size: 18px;"> sizes, </span>' +
-                      '<span style="color: blue">and colors.</span>' +
-                    '</li>' +
-                    '<li>' +
-                      '<b>Bold, </b>' +
-                      '<i>italic, </i>' +
-                      '<u>and underline.</u>' +
-                    '</li>' +
-                    '<li>Lists' +
-                      '<ol>' +
-                        '<li>One</li>' +
-                        '<li>Two</li>' +
-                      '</ol>' +
-                    '</li>' +
-                    '<li>Undo / redo</li>' +
-                    '<li>Cursor / selection synchronization.</li>' +
-                    '<li><checkbox></checkbox> It supports customized entities.</li>' +
-                    '<li>And it\'s all fully collaborative!</li>' +
-                  '</ul>' +
-                  '</div>');
+        <hr/>
+        <div class="row"><h3>Journal</h3></div>
+        <div id="firepad-container"></div>
+        <script>
+            function init() {
+                //// Initialize Firebase.
+                //// TODO: replace with your Firebase project configuration.
+                var config = {
+                    apiKey: "AIzaSyC_JdByNm-E1CAJUkePsr-YJZl7W77oL3g",
+                    authDomain: "firepad-tests.firebaseapp.com",
+                    databaseURL: "https://firepad-tests.firebaseio.com"
+                };
+                firebase.initializeApp(config);
+                //// Get Firebase Database reference.
+                var firepadRef = getExampleRef();
+                //// Create CodeMirror (with lineWrapping on).
+                var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true });
+                //// Create Firepad (with rich text toolbar and shortcuts enabled).
+                var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
+                        { richTextToolbar: true, richTextShortcuts: true });
+                //// Initialize contents.
+                firepad.on('ready', function() {
+                    if (firepad.isHistoryEmpty()) {
+                        firepad.setHtml(
+                                '<span style="font-size: 24px;">Rich-text editing with <span style="color: red">Firepad!</span></span><br/>\n' +
+                                '<br/>' +
+                                '<div style="font-size: 18px">' +
+                                'Supports:<br/>' +
+                                '<ul>' +
+                                '<li>Different ' +
+                                '<span style="font-family: impact">fonts,</span>' +
+                                '<span style="font-size: 24px;"> sizes, </span>' +
+                                '<span style="color: blue">and colors.</span>' +
+                                '</li>' +
+                                '<li>' +
+                                '<b>Bold, </b>' +
+                                '<i>italic, </i>' +
+                                '<u>and underline.</u>' +
+                                '</li>' +
+                                '<li>Lists' +
+                                '<ol>' +
+                                '<li>One</li>' +
+                                '<li>Two</li>' +
+                                '</ol>' +
+                                '</li>' +
+                                '<li>Undo / redo</li>' +
+                                '<li>Cursor / selection synchronization.</li>' +
+                                '<li><checkbox></checkbox> It supports customized entities.</li>' +
+                                '<li>And it\'s all fully collaborative!</li>' +
+                                '</ul>' +
+                                '</div>');
+                    }
+                });
+                // An example of a complex custom entity.
+                firepad.registerEntity('checkbox', {
+                    render: function (info, entityHandler) {
+                        var inputElement = document.createElement('input');
+                        inputElement.setAttribute('type', 'checkbox');
+                        if(info.checked) {
+                            inputElement.checked = 'checked';
+                        }
+                        inputElement.addEventListener('click', function () {
+                            entityHandler.replace({checked:this.checked});
+                        });
+                        return inputElement;
+                    }.bind(this),
+                    fromElement: function (element) {
+                        var info = {};
+                        if(element.hasAttribute('checked')) {
+                            info.checked = true;
+                        }
+                        return info;
+                    },
+                    update: function (info, element) {
+                        if (info.checked) {
+                            element.checked = 'checked';
+                        } else {
+                            element.checked = null;
+                        }
+                    },
+                    export: function (info) {
+                        var inputElement = document.createElement('checkbox');
+                        if(info.checked) {
+                            inputElement.setAttribute('checked', true);
+                        }
+                        return inputElement;
+                    }
+                });
             }
-          });
-          // An example of a complex custom entity.
-          firepad.registerEntity('checkbox', {
-            render: function (info, entityHandler) {
-              var inputElement = document.createElement('input');
-              inputElement.setAttribute('type', 'checkbox');
-              if(info.checked) {
-                inputElement.checked = 'checked';
-              }
-              inputElement.addEventListener('click', function () {
-                entityHandler.replace({checked:this.checked});
-              });
-              return inputElement;
-            }.bind(this),
-            fromElement: function (element) {
-              var info = {};
-              if(element.hasAttribute('checked')) {
-                info.checked = true;
-              }
-              return info;
-            },
-            update: function (info, element) {
-              if (info.checked) {
-                element.checked = 'checked';
-              } else {a
-                element.checked = null;
-              }
-            },
-            export: function (info) {
-              var inputElement = document.createElement('checkbox');
-              if(info.checked) {
-                inputElement.setAttribute('checked', true);
-              }
-              return inputElement;
+            // Helper to get hash from end of URL or generate a random one.
+            function getExampleRef() {
+                var ref = firebase.database().ref();
+                var hash = window.location.hash.replace(/#/g, '');
+                if (hash) {
+                    ref = ref.child(hash);
+                } else {
+                    ref = ref.push(); // generate unique location.
+                    window.location = window.location + '#' + ref.key; // add it as a hash to the URL.
+                }
+                if (typeof console !== 'undefined') {
+                    console.log('Firebase data: ', ref.toString());
+                }
+                return ref;
             }
-          });
-        }
-        // Helper to get hash from end of URL or generate a random one.
-        function getExampleRef() {
-          var ref = firebase.database().ref();
-          var hash = window.location.hash.replace(/#/g, '');
-          if (hash) {
-            ref = ref.child(hash);
-          } else {
-            ref = ref.push(); // generate unique location.
-            window.location = window.location + '#' + ref.key; // add it as a hash to the URL.
-          }
-          if (typeof console !== 'undefined') {
-            console.log('Firebase data: ', ref.toString());
-          }
-          return ref;
-        }
         </script>
-    <footer class="footer">
-      <div class="container-fluid">
-        <span>Authors: Gordon Ngo, Sean Wolford</span>
-      </div>
-    </footer>
+        <footer class="footer">
+          <div class="container-fluid">
+            <span>Authors: Gordon Ngo, Sean Wolford</span>
+          </div>
+        </footer>
     </div>
   </body>
 </html>
