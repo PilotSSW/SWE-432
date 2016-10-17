@@ -68,6 +68,19 @@ body {
   margin: 0 auto;
 }
 
+<<<<<<< HEAD:public/assets/css/styles.css
+=======
+.content {
+	z-index: 100000;
+	justify-content: center;
+	padding-left: 25%;
+	padding-right: 25%;
+  text-align: justify;
+  font-family: "Lucida Console", monospace;
+  color: #14F074;
+}
+
+>>>>>>> origin/master:stylesheets/styles.css
 .register {
   padding-top: 100px;
   padding-bottom: 10px;

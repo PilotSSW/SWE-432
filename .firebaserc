@@ -1,5 +1,9 @@
 {
   "projects": {
+<<<<<<< HEAD
     "default": "unityos-test"
+=======
+    "default": "unityos-88808"
+>>>>>>> origin/master
   }
 }
