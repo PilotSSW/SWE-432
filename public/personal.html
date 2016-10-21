@@ -12,12 +12,16 @@
         <link rel="stylesheet" href="assets/css/bootstrap.css">
         <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
         <link rel="stylesheet" href="assets/css/styles.css">
-        <link rel="stylesheet" href="assets/css/tasklist.css">
         <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
         <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
         <script src="https://cdn.firebase.com/libs/reactfire/1.0.0/reactfire.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine-html.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/boot.min.js"></script>
+        <link rel="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.css"></link>
 
 
         <!-- CodeMirror -->
@@ -34,7 +38,7 @@
   <body onload="init()">
     <div class="container-fluid">
       <div class="row">
-        <nav class="navbar navbar-inverse navbar-fixed">
+        <nav class="navbar navbar-default navbar-fixed">
           <ul class="nav nav-justified">
             <li class="nav-item">
                 <a class="nav-link" href="home.html">Home</a>
@@ -62,10 +66,12 @@
       </div>
 
       <div class="content">
-        <div id="thelist" class="row">
-
-        </div>
+        <div id="thelist" class="row"><h3>Tasks</h3></div>
+        <hr/>
+        <div class="row"><h3>Journal</h3></div>
+        <div id="firepad-container"></div>
         <script type="text/babel">
+
             "use strict";
             // Initialize Firebase
             var config = {
@@ -75,6 +81,7 @@
                 storageBucket: "unityos-88808.appspot.com",
                 messagingSenderId: "761255611285"
             };
+            
             firebase.initializeApp(config);
 
             var TodoList = React.createClass({
@@ -92,7 +99,8 @@
                     return <ul>{this.props.items.map(createItem)}</ul>;
                 }
             });
-          var TodoApp = React.createClass({
+
+            var TodoApp = React.createClass({
               mixins: [ReactFireMixin],
               getInitialState: function () {
                   return {items: []};
@@ -127,24 +135,59 @@
                               </div>
                       );
               }
-          });
-          ReactDOM.render(<TodoApp />, document.getElementById('thelist'));
+            });
+            ReactDOM.render(<TodoApp />, document.getElementById('thelist'));
+
+
+
+            //////////////////////// Jasmine Tests -- Carl Bednar ////////
+
+            describe("New Todo", function(){
+                var newPost;
+
+                beforeEach(function() {
+                    newToDo = new newToDo({
+                        checkbox: "nil",
+                        event : "Water the Dog",
+                        time : "12:12",
+                        date : "10/10/2010"
+                    });
+
+                    describe("ToEqual", function() {
+                        it("should have an unchecked box", function(){
+                            expect(newToDo.checkbox).toEqual("nil");
+                        });
+                        it("should have a dog watering activity", function() {
+                            expect(newToDo.event).toEqual("Water the Dog");
+                        });
+                        it("should have a time after noon", function() {
+                            expect(newToDo.time).toEqual("12:12");
+                        });
+                        it("should have a date in the past", function() {
+                            expect(newToDo.date).toEqual("10/10/2010");
+                        });
+                    });
+                });
+
+                beforeEach(function() {
+                    newPost.checkbox = "checked";
+
+                    describe("Completed tasks", function() {
+                        it("should have a checked box", function() {
+                            expect(checkbox).toEqual("checked");
+                        });
+                    });
+
+                });
+
+            });
         </script>
 
-      </div>
-        <hr/>
-        <div class="row"><h3>Journal</h3></div>
-        <div id="firepad-container"></div>
-        <script>
+        <script type="text/javascript">
             function init() {
                 //// Initialize Firebase.
                 //// TODO: replace with your Firebase project configuration.
-                var config = {
-                    apiKey: "AIzaSyC_JdByNm-E1CAJUkePsr-YJZl7W77oL3g",
-                    authDomain: "firepad-tests.firebaseapp.com",
-                    databaseURL: "https://firepad-tests.firebaseio.com"
-                };
-                firebase.initializeApp(config);
+
                 //// Get Firebase Database reference.
                 var firepadRef = getExampleRef();
                 //// Create CodeMirror (with lineWrapping on).
@@ -237,6 +280,7 @@
                 return ref;
             }
         </script>
+
         <footer class="footer">
           <div class="container-fluid">
             <span>Authors: Gordon Ngo, Sean Wolford</span>
