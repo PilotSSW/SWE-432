@@ -43,7 +43,7 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <nav class="navbar navbar-inverse navbar-fixed header">
+        <nav class="navbar navbar-default navbar-fixed">
           <ul class="nav nav-justified">
             <li class="nav-item">
                 <a class="nav-link" href="home.html">Home</a>
@@ -69,6 +69,26 @@
           </ul>
         </nav>
       </div>
+      <div id="Timer"></div>
+      <script type="text/babel">
+        import Dropdown from 'react-timer'
+        import ReactDOM from 'react-dom'
+        import React, { Component, PropTypes } from 'react'
+
+        class TestComponent extends Component {
+          /* delay is just the delay on showing the update of the timer */
+          let OPTIONS = { prefix: 'seconds elapsed!', delay: 100}
+          render () {
+            return (
+              <div>
+                <Timer options={OPTIONS} />
+              </div>
+            )
+          }
+        }
+
+        ReactDOM.render( <TestComponent />, document.getElementById('Timer') )
+      </script>
     </div> 
     <footer>
       <div class="container-fluid">

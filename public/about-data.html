@@ -9,11 +9,15 @@
 	    <link rel="stylesheet" href="assets/css/tasklist.css">
 	    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine-html.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/boot.min.js"></script>
+        <link rel="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.css"></link>
 	</head>
 	<body>
 		<div class="container-fluid">
 		  <div class="row">
-		    <nav class="navbar navbar-inverse navbar-fixed header">
+		    <nav class="navbar navbar-default navbar-fixed">
 		      <ul class="nav nav-justified">
 		        <li class="nav-item">
 		            <a class="nav-link" href="home.html">Home</a>
@@ -44,6 +48,38 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
 		<script src="assets/js/d3pie.js"></script>
 		<script src="assets/js/piechart.js"></script>
+		<script type="text/javascript">
+			describe("toBe", function() { 
+	            it("should pass equal numbers", function() { 
+	              expect(1).toBe(1);  });
 
+	            it("should pass equal strings", function() {
+	              expect("testing").toBe("testing"); 
+	            });
+
+	            it("should pass equal booleans", function() {expect(true).toBe(true);});
+
+	            it("should pass same objects", function() {var object = {a: "testing"};
+	              expect(object).toBe(object); 
+	            });
+
+	            it("should pass same arrays", function() {var array = [1, 2, 3];
+	              expect(array).toBe(array); 
+	            });
+
+	            it("should not pass equal objects", function() {expect({a: "testing"}).not.toBe({a: "testing"});}); 
+	             
+	            it("should not pass equal arrays", function() { 
+	              expect([1, 2, 3]).not.toBe([1, 2, 3]);  }); 
+        	}
+
+            describe("toBe", function(){
+	            it("should have 40% slack usage", function(){
+	            	var object = {text: "p0_segmentPercentage0-inner"}
+	            	expect(object).toBe("40%");
+	            });
+	        }
+          });
+		</script>
 	</body>
 </html>
