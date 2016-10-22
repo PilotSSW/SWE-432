@@ -1,0 +1,47 @@
+{
+  "name": "unity-os",
+  "version": "1.6.0",
+  "description": "We've changed our project specifications and decided to try a different project altogether (again!). We found that the requirements were way too broad for app and really just didnt apply to it. So we decided to build a miniature OS that hosts four tabs (personal, social, work, news). Underneath these tabs are collections of web-apps that can run (as a single page app) so that the user doesnt have a cluttered browser bar. They can let something like spotify or twitter be running, but hidden under the social tab while they edit their journal or tasks under the personal tab. All of their data and things that they would normally run as a webapp anyways will be better organized inside of one single page app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "runFeed": "browserify -t reactify app/app.js > build/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PilotSSW/SWE-432.git"
+  },
+  "author": "SSW,GCN,CB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PilotSSW/SWE-432/issues"
+  },
+  "homepage": "https://github.com/PilotSSW/SWE-432#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "feed-read": "0.0.1",
+    "karma": "^1.3.0",
+    "lodash": "^3.8.0",
+    "querystring": "^0.2.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-slack-chat": "^0.1.0",
+    "react-timer": "^1.0.1",
+    "request": "^2.75.0"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "jasmine": "^2.5.2",
+    "karma-browserify": "^5.1.0",
+    "nodemon": "^1.10.2",
+    "react-tools": "^0.13.3",
+    "reactify": "^1.1.1",
+    "watchify": "^3.7.0"
+  },
+  "keywords": [
+    "dashboard-app",
+    "single-page-liferunner"
+  ]
+}
