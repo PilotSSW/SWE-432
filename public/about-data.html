@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-	    <script type="javascript" src="../js/bootstrap.js"></script>
+	    <script type="javascript" src="assets/js/bootstrap.js"></script>
 	    <link rel="stylesheet" href="assets/css/bootstrap.css">
 	    <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
 	    <link rel="stylesheet" href="assets/css/styles.css">
@@ -49,6 +49,7 @@
 		<script src="assets/js/d3pie.js"></script>
 		<script src="assets/js/piechart.js"></script>
 		<script type="text/javascript">
+			// Tests the math functions to make sure they work properly 
 			describe("toBe", function() { 
 	            it("should pass equal numbers", function() { 
 	              expect(1).toBe(1);  });
@@ -71,15 +72,30 @@
 	             
 	            it("should not pass equal arrays", function() { 
 	              expect([1, 2, 3]).not.toBe([1, 2, 3]);  }); 
-        	}
+        	});
 
+        	//Tests D3 
             describe("toBe", function(){
 	            it("should have 40% slack usage", function(){
 	            	var object = {text: "p0_segmentPercentage0-inner"}
 	            	expect(object).toBe("40%");
 	            });
-	        }
-          });
+
+	            it("should have 33% spotify usage", function(){
+	            	var object = {text: "p0_segmentPercentage1-inner"}
+	            	expect(object).toBe("33%");
+	            });
+
+	            it("should have 15% facebook usage", function(){
+	            	var object = {text: "p0_segmentPercentage2-inner"}
+	            	expect(object).toBe("15%");
+	            });
+
+	            it("should have 12% twitter usage", function(){
+	            	var object = {text: "p0_segmentPercentage3-inner"}
+	            	expect(object).toBe("12%");
+	            });
+	        });
 		</script>
 	</body>
 </html>
