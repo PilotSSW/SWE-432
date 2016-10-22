@@ -88,7 +88,7 @@
                 render: function () {
                     var _this = this; //In the subcomponent, "this" will refer to window, so need to save "this" here
                     var createItem = function (item, key) {
-                        return (<div key={key}>
+                        return (<div key={key} class="todoline">
                                     <input type="checkbox" id="checkbox" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.checked}/>
                                     <input type="text" id="task" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.task}/>
                                     <input type="time" id="time" onChange={_this.props.onChange.bind(null, item['.key'])} value={item.time}/>
@@ -179,6 +179,25 @@
                     });
 
                 });
+
+                //////////////////////// Jasmine Tests -- Sean Wolford ///////////
+                //////////////////////// Jasmine Tests -- Test Empty todo line ///
+                describe("ToEqual", function() {
+                    var todo = n
+                    it("should have a checked box", function(){
+                        expect(ToDo.item.props.checkbox).toEqual("checked");
+                    });
+                    it("", function() {
+                        expect(ToDo.item.props.todo).toEqual("NIL");
+                    });
+                    it("", function() {
+                        expect(ToDo.item.props.time).toEqual("--:-- --");
+                    });
+                    it("should have a date in the past", function() {
+                        expect(ToDo.item.props.date).toEqual("mm/dd/yyyy");
+                    });
+                });
+                var h1 = TestUtils.findRenderedDOMComponentWithTag(component, 'h1');
 
             });
         </script>
