@@ -12,7 +12,7 @@ firebase.initializeApp({
     serviceAccount: "privkey.json",
     databaseURL: "https://unityos-88808.firebaseio.com"
 });
-var fireRef = firebase.database().ref('todos');
+var fireRef = firebase.database();
 
 var port = process.env.port || 3000;
 
@@ -61,6 +61,12 @@ app.delete('/todo', function (req, res) {
 app.get('/emptyHtml.html', function (req, res) {
     console.log("Requested empty html");
     res.send("OK!");
+});
+
+app.get('home.html', function (req, res){
+	console.log("Home page requested");
+	var url = require('url');
+	var fullurl = url.resolve('http://www.google.com');
 });
 
 

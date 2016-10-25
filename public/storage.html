@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  <head>
+	<head>
     <meta charset="UTF-8">
     <meta name="description"
     content="Static skeleton page for SWE Project done in tutorial format"/>
@@ -36,20 +36,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/boot.min.js"></script>
     <link rel="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.css"></link>
   </head>
-
   <body>
     <div class="container-fluid">
-      <div class="row">
+      <div class="navigation row">
         <nav class="navbar navbar-default navbar-fixed">
           <ul class="nav nav-justified">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="home.html">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="personal.html">Personal</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Work</a>
+                <a class="nav-link" href="work.html">Work</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="social.html">Social</a>
@@ -57,8 +56,8 @@
             <li class="nav-item">
               <a class="nav-link" href="news.html">News</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="storage.html">Storage</a>
+            <li class="nav-item active">
+            	<a class="nav-link" href="storage.html">Storage</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="about-data.html">Usage</a>
@@ -69,53 +68,62 @@
           </ul>
         </nav>
       </div>
-      <div id = "home"></div>
-      <div id = "unity"></div>
-      <script type="text/babel">
-        class HelloWorld extends React.Component {
-          render() {
-            return (
-              <p>
-                <h5>Hello, <input type="text" placeholder="Your name here" />!</h5>
-                <h5>It is </h5><h3>{this.props.date.toTimeString()}</h3>
-              </p>
-            );
-          }
-        });
-          
-        ReactDOM.render(<HelloWorld />, document.getElementById('home'));
+      <div class="storage row" id="upload">
+      	<input type="file" name="uploadfile" id="uploadfile">
+      	<input type="submit" value="Upload File">
+      	<div id="downloadURL">
+      	<script type="text/javascript">
+      		var input = document.createElement("Input");
+      		input.setAttribute("type", "file");
+      		document.getElementById('upload').appendChild(input);
+					// File or Blob named mountains.jpg
+					var file = getElementById('uploadfile');
 
-        setInterval(tick, 500);
-        
-        describe("toBe", function() { 
-          it("should pass equal numbers", function() { 
-            expect(1).toBe(1);  });
+					// Create the file metadata
+					var metadata = {
+					  contentType: 'file'
+					};
 
-          it("should pass equal strings", function() {
-            expect("testing").toBe("testing"); 
-          });
+					// Upload file and metadata to the object 'images/mountains.jpg'
+					var uploadTask = storageRef.child('files/' + file.name).put(file, metadata);
 
-          it("should pass equal booleans", function() {expect(true).toBe(true);});
+					// Listen for state changes, errors, and completion of the upload.
+					uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+					  function(snapshot) {
+					    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+					    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					    console.log('Upload is ' + progress + '% done');
+					    switch (snapshot.state) {
+					      case firebase.storage.TaskState.PAUSED: // or 'paused'
+					        console.log('Upload is paused');
+					        break;
+					      case firebase.storage.TaskState.RUNNING: // or 'running'
+					        console.log('Upload is running');
+					        break;
+					    }
+					  }, function(error) {
+					  switch (error.code) {
+					    case 'storage/unauthorized':
+					      // User doesn't have permission to access the object
+					      break;
 
-          it("should pass same objects", function() {var object = {a: "testing"};
-            expect(object).toBe(object); 
-          });
+					    case 'storage/canceled':
+					      // User canceled the upload
+					      break;
 
-          it("should pass same arrays", function() {var array = [1, 2, 3];
-            expect(array).toBe(array); 
-          });
-
-          it("should not pass equal objects", function() {expect({a: "testing"}).not.toBe({a: "testing"});}); 
-           
-          it("should not pass equal arrays", function() { 
-            expect([1, 2, 3]).not.toBe([1, 2, 3]);  }); 
-        });
-      </script> 
-    </div>
-    <footer class="footer">
-      <div class="container-fluid">
-        <span>Authors: Gordon Ngo, Sean Wolford</span>
-      </div>
-    </footer>
-  </body>
+					    case 'storage/unknown':
+					      // Unknown error occurred, inspect error.serverResponse
+					      break;
+					  }
+					}, function() {
+					  // Upload completed successfully, now we can get the download URL
+					  var downloadURL = uploadTask.snapshot.downloadURL;
+						document.getElementById('downloadURL') = downloadURL;
+				</script>
+			</div>
+		</div>
+	</body>
 </html>
+
+
+

@@ -29,12 +29,7 @@
     <!-- CodeMirror -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
-
-    <!-- Firepad -->
-    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
-    <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
-
-     <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
     <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
   	<title>SWE-432</title>
@@ -61,6 +56,9 @@
               <a class="nav-link" href="news.html">News</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="storage.html">Storage</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="about-data.html">Usage</a>
             </li>
             <li class="nav-item">
@@ -71,6 +69,8 @@
       </div>
       <div id="Timer"></div>
       <script type="text/babel">
+        require('react');
+        require('react-DOM');
         import Dropdown from 'react-timer'
         import ReactDOM from 'react-dom'
         import React, { Component, PropTypes } from 'react'
@@ -87,7 +87,7 @@
           }
         }
 
-        ReactDOM.render( <TestComponent />, document.getElementById('Timer') )
+        ReactDOM.render( <TestComponent />, document.getElementById('Timer'))
       </script>
     </div> 
     <footer>
