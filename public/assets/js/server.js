@@ -58,17 +58,11 @@ app.delete('/todo', function (req, res) {
         res.status(403);
     });
 });
-app.get('/emptyHtml.html', function (req, res) {
+
+app.get('public/home.html', function (req, res) {
     console.log("Requested empty html");
     res.send("OK!");
 });
-
-app.get('home.html', function (req, res){
-	console.log("Home page requested");
-	var url = require('url');
-	var fullurl = url.resolve('http://www.google.com');
-});
-
 
 app.use(express.static('public'));
 

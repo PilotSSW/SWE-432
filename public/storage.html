@@ -69,56 +69,16 @@
         </nav>
       </div>
       <div class="storage row" id="upload">
-      	<input type="file" name="uploadfile" id="uploadfile">
-      	<input type="submit" value="Upload File">
+      	<input type="file" name="uploadfile" id="fileUpload">
+      	<input type="submit" value="Upload File" id="submitfile">
       	<div id="downloadURL">
-      	<script type="text/javascript">
-      		var input = document.createElement("Input");
-      		input.setAttribute("type", "file");
-      		document.getElementById('upload').appendChild(input);
-					// File or Blob named mountains.jpg
-					var file = getElementById('uploadfile');
-
-					// Create the file metadata
-					var metadata = {
-					  contentType: 'file'
-					};
-
-					// Upload file and metadata to the object 'images/mountains.jpg'
-					var uploadTask = storageRef.child('files/' + file.name).put(file, metadata);
-
-					// Listen for state changes, errors, and completion of the upload.
-					uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-					  function(snapshot) {
-					    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-					    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-					    console.log('Upload is ' + progress + '% done');
-					    switch (snapshot.state) {
-					      case firebase.storage.TaskState.PAUSED: // or 'paused'
-					        console.log('Upload is paused');
-					        break;
-					      case firebase.storage.TaskState.RUNNING: // or 'running'
-					        console.log('Upload is running');
-					        break;
-					    }
-					  }, function(error) {
-					  switch (error.code) {
-					    case 'storage/unauthorized':
-					      // User doesn't have permission to access the object
-					      break;
-
-					    case 'storage/canceled':
-					      // User canceled the upload
-					      break;
-
-					    case 'storage/unknown':
-					      // Unknown error occurred, inspect error.serverResponse
-					      break;
-					  }
-					}, function() {
-					  // Upload completed successfully, now we can get the download URL
-					  var downloadURL = uploadTask.snapshot.downloadURL;
-						document.getElementById('downloadURL') = downloadURL;
+      	<script type="text/babel">
+      		var storageRef = firebase.storage.Reference("folderName/file.jpg");
+					var fileUpload = document.getElementById("fileUpload");
+					fileUpload.on('change', function(evt){
+						var firstFile = evt.target.file[0];
+						var uploadTask = storageRef.put(firstFile);
+					});
 				</script>
 			</div>
 		</div>

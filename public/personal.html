@@ -104,40 +104,45 @@
             });
 
             var TodoApp = React.createClass({
-              mixins: [ReactFireMixin],
-              getInitialState: function () {
-                  return {items: []};
-              },
-              componentWillMount: function () {
-                  this.fireRef = firebase.database().ref('todos');
-                  this.bindAsArray(this.fireRef, "items");
-              },
-              handleChange: function (key) {
-                  return function (e) {
-                      var state = {};
-                      state[key] = e.target.value;
-                      this.setState(state);
-                  }.bind(this);
-              },
-              onChange: function (fireKey, event) {
-                  this.fireRef.child(fireKey).set({"checkbox": event.target.checked, "text": event.target.task, "time":event.target.time, "date":event.target.date});
-              },
-              removeItem: function (key) {
-                  this.fireRef.child(key).remove();
-              },
-              handleAdd: function (e) {
-                  this.fireRef.push({"checkbox": "", "task": "", "time": "", "date": "" });
-              },
-              render: function() {
-                      return (
-                              <div>
-                                  <h3>Tasks </h3>
-                                  <TodoList items={this.state.items} removeItem={this.removeItem}
-                                            onChange={this.onChange}/>
-                                  <button onClick={this.handleAdd}>New</button>
-                              </div>
-                      );
-              }
+                mixins: [ReactFireMixin],
+                getInitialState: function () {
+                    return {items: []};
+                },
+                componentWillMount: function () {
+                    this.fireRef = firebase.database().ref('todos');
+                    this.bindAsArray(this.fireRef, "items");
+                },
+                handleChange: function (key) {
+                    return function (e) {
+                        var state = {};
+                        state[key] = e.target.value;
+                        this.setState(state);
+                    }.bind(this);
+                },
+                onChange: function (fireKey, event) {
+                    this.fireRef.child(fireKey).set({"checkbox": event.target.checked, "text": event.target.task, "time":event.target.time, "date":event.target.date});
+                },
+                removeItem: function (key) {
+                    $.post("http://localhost:3000/deleteTodo",{ key: key});
+                },
+                handleAdd: function (e) {
+                    var newText = $("#newTodo").val();
+                    $.post("http://localhost:3000/newTodo",{ todoText: newText});
+                    $("#newTodo").val("");
+                },
+                handleUpdate: function (fireKey, e) {
+                    $.post("http://localhost:3000/editTodo",{ todoText: e.target.value, key: fireKey});
+                },
+                render: function() {
+                    return (
+                        <div>
+                            <h3>Tasks </h3>
+                            <TodoList items={this.state.items} removeItem={this.removeItem}
+                                    onChange={this.onChange}/>
+                            <button onClick={this.handleAdd}>New</button>
+                        </div>
+                    );
+                }
             });
             ReactDOM.render(<TodoApp />, document.getElementById('thelist'));
 
