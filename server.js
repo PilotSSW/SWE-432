@@ -12,7 +12,7 @@ firebase.initializeApp({
     serviceAccount: "privkey.json",
     databaseURL: "https://unityos-88808.firebaseio.com"
 });
-var fireRef = firebase.database();
+var fireRef = firebase.database().ref('users');
 
 var port = process.env.port || 3000;
 
@@ -20,12 +20,18 @@ var port = process.env.port || 3000;
 app.post('/Todo', function (req, res) {
     console.log("New req");
     console.log("Client wants to create todo: '" + req.body.todoText + "'");
-    fireRef.push({"text": req.body.todoText}, function () {
-        res.send("OK!");
-    }).catch(function(){
-        res.status(403);
-        res.send();
+    console.log("Token: " + req.body.token);
+    firebase.auth().verifyIdToken(idToken).then(function (decodedToken){
+        var uid = decodedToken.uid;
+
+        fireRef.push({"text": req.body.todoText}, function () {
+            res.send("OK!");
+        }).catch(function(){
+            res.status(403);
+            res.send();
+        });
     });
+
 });
 //Edit one
 app.put('/Todo', function (req, res) {
@@ -36,32 +42,47 @@ app.put('/Todo', function (req, res) {
         res.send();
     }
     else
-        fireRef.child(req.body.key).set({"text": req.body.todoText}, function () {
-            res.send("OK!");
-        }).catch(function(){
-            res.status(403);
-            res.send();
+        firebase.auth().verifyIdToken(idToken).then(function (decodedToken) {
+          console.log(JSON.stringify(decodedToken));
+          var uid = decodedToken.uid;
+
+          fireRef.child(req.body.key).set({"text": req.body.todoText}, function () {
+              res.send(home.html);
+          }).catch(function(){
+              res.status(403);
+              res.send();
+          });
+
+        }).catch( function (error) {
+            console.log(error);
         });
+
 });
 //Delete one
 app.delete('/Todo', function (req, res) {
     console.log("Client wants to delete todo: '" +req.body.key);
-    fireRef.child(req.body.key).once("value", function(item){
-        if(item.val().text.toLowerCase().includes("lasagna"))
+    var idToken = req.body.token;
+
+    firebase.auth().verifyIdToken(idToken).then(function (decodedToken) {
+        var uid = decodedToken.uid;
+
+        fireRef.child(req.body.key).once("value", function(item){
+            if(item.val().text.toLowerCase().includes("lasagna"))
+                res.status(403);
+            else
+            {
+                fireRef.child(req.body.key).remove();
+                res.send("OK!");
+              }
+        }).catch(function(){
             res.status(403);
-        else
-        {
-            fireRef.child(req.body.key).remove();
-            res.send("OK!");
-        }
-    }).catch(function(){
-        res.status(403);
-    });
+        });
+      });
 });
 
 app.get('/home.html', function (req, res) {
     console.log("Requested home page");
-    res.send("OK!");
+    res.sendfile('public/home.html');
 });
 
 app.use(express.static('public'));
