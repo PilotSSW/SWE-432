@@ -47,7 +47,7 @@ app.put('/Todo', function (req, res) {
           var uid = decodedToken.uid;
 
           fireRef.child(req.body.key).set({"text": req.body.todoText}, function () {
-              res.send("OK!");
+              res.send(home.html);
           }).catch(function(){
               res.status(403);
               res.send();
@@ -82,7 +82,7 @@ app.delete('/Todo', function (req, res) {
 
 app.get('/home.html', function (req, res) {
     console.log("Requested home page");
-    res.send("OK!");
+    res.sendfile('public/home.html');
 });
 
 app.use(express.static('public'));
