@@ -85,6 +85,6 @@ app.get('/home.html', function (req, res) {
 
 app.use(express.static('public'));
 
-app.listen(port, function () {
-    console.log('Example app listening on port ' + port);
+app.listen(process.env.port || 5000, function () {
+    console.log('Example app listening on port ' + process.env.port);
 });
