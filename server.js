@@ -14,8 +14,6 @@ firebase.initializeApp({
 });
 var fireRef = firebase.database().ref('users');
 
-var port = process.env.port || 3000;
-
 //Make a new one
 app.post('/Todo', function (req, res) {
     console.log("New req");
@@ -82,7 +80,7 @@ app.delete('/Todo', function (req, res) {
 
 app.get('/home.html', function (req, res) {
     console.log("Requested home page");
-    res.sendfile('public/home.html');
+    res.sendFile('public/home.html');
 });
 
 app.use(express.static('public'));
