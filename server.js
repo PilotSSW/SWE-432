@@ -3,16 +3,30 @@ var firebase = require("firebase");
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
+var port = process.env.PORT || 8080;
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
+app.set('view engine', 'ejs');
 
 firebase.initializeApp({
     serviceAccount: "privkey.json",
     databaseURL: "https://unityos-88808.firebaseio.com"
 });
 var fireRef = firebase.database().ref('users');
+
+app.use(express.static(__dirname + '/public'));
+
+app.get('home.html', function (req, res) {
+    console.log("Requested home page");
+    res.sendFile('public/home.html');
+});
+
+app.listen(port, function() {
+    console.log('Our app is running on http://localhost:' + port);
+});
+
 
 //Make a new one
 app.post('/Todo', function (req, res) {
@@ -76,15 +90,4 @@ app.delete('/Todo', function (req, res) {
             res.status(403);
         });
       });
-});
-
-app.get('/home.html', function (req, res) {
-    console.log("Requested home page");
-    res.sendFile('public/home.html');
-});
-
-app.use(express.static('public'));
-
-app.listen(process.env.port || 5000, function () {
-    console.log('Example app listening on port ' + process.env.port);
 });
