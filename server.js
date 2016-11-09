@@ -2,7 +2,8 @@
 var firebase = require("firebase");
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var path = require("path");
 var port = process.env.PORT || 8080;
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -16,12 +17,17 @@ firebase.initializeApp({
 });
 var fireRef = firebase.database().ref('users');
 
-app.use(express.static(__dirname + '/public'));
-
-app.get('home.html', function (req, res) {
-    console.log("Requested home page");
-    res.sendFile('public/home.html');
-});
+app.use(express.static('public'))
+app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use('/', express.static(__dirname + '/public/login.html'))
+app.use('/home', express.static(path.join(__dirname + '/public/home.html')))
+app.get('/news', express.static(path.join(__dirname + '/public/news.html')))
+app.get('/work', express.static(path.join(__dirname + '/public/work.html')))
+app.get('/home', express.static(path.join(__dirname + '/public/home.html')))
+app.get('/personal', express.static(path.join(__dirname + '/public/personal.html')))
+app.get('/social', express.static(path.join(__dirname + '/public/social.html')))
+app.get('/storage', express.static(path.join(__dirname + '/public/storage.html')))
+app.get('/about', express.static(path.join(__dirname + '/public/about.html')))
 
 app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
@@ -85,9 +91,9 @@ app.delete('/Todo', function (req, res) {
             {
                 fireRef.child(req.body.key).remove();
                 res.send("OK!");
-              }
+            }
         }).catch(function(){
             res.status(403);
         });
-      });
+    });
 });
