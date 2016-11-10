@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+  	<% include head %>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <% include navbar %>
+      <div class="row">
+        <div id="twitter" class="col-md-6" style="display: flex;">
+          <a class="twitter-timeline"
+          href="https://twitter.com/TwitterDev"
+          data-height="900"
+          data-chrome="nofooter"
+          data-link-color="#820bbb"
+          data-border-color="#a80000">
+          Tweets by @TwitterDev
+          </a>
+          <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <script>window.twttr = (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+          if (d.getElementById(id)) return t;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+
+          t._e = [];
+          t.ready = function(f) {
+            t._e.push(f);
+          };
+
+          return t;
+          }(document, "script", "twitter-wjs"));</script>
+        </div>
+        <div id="spotify" class="col-md-6">
+          <iframe src="https://embed.spotify.com/?uri=spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ" width="600" height="720" frameborder="0" allowtransparency="true"></iframe>
+        </div>
+      </div>
+    </div> 
+    <% include footer %>
+  </body>
+</html>

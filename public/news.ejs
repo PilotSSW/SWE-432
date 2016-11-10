@@ -1,112 +1,16 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-  	<meta charset="UTF-8">
-  	<meta name="description"
-  	content="Static skeleton page for SWE Project done in tutorial format"/>
-  	<meta name="keywords"
-  	content="html5 tutorial, gmu swe432, html5"/>
-  	<meta name="robots" content="index,follow"/>
-    <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
-    <script type="javascript" src="assets/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/tasklist.css">
-    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyA2d80wrdiDQ3Vw999T8HqvYXcG8KBVcEs",
-        authDomain: "unityos-88808.firebaseapp.com",
-        databaseURL: "https://unityos-88808.firebaseio.com",
-        storageBucket: "unityos-88808.appspot.com",
-        messagingSenderId: "761255611285"
-      };
-      firebase.initializeApp(config);
-    </script>
-        <script type="text/javascript">
-      initApp = function() {
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var uid = user.uid;
-            var providerData = user.providerData;
-            user.getToken().then(function(accessToken) {
-              document.getElementById('sign-in-status').textContent = 'Signed in';
-              document.getElementById('sign-in').textContent = 'Sign out';
-              document.getElementById('account-details').textContent = JSON.stringify({
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                photoURL: photoURL,
-                uid: uid,
-                accessToken: accessToken,
-                providerData: providerData
-              }, null, '  ');
-            });
-          } else {
-            // User is signed out.
-            document.getElementById('sign-in-status').textContent = 'Signed out';
-            document.getElementById('sign-in').textContent = 'Sign in';
-            document.getElementById('account-details').textContent = 'null';
-          }
-        }, function(error) {
-          console.log(error);
-        });
-      };
-
-      window.addEventListener('load', function() {
-        initApp()
-      });
-    </script>
-    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
-    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  	<title>SWE-432</title>
+  	<%include head %>
   </head>
 
   <body>
     <div class="container-fluid">
-      <div class="row">
-        <nav class="navbar navbar-default navbar-fixed">
-          <ul class="nav nav-justified">
-            <li class="nav-item">
-                <a class="nav-link" href="home.html">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="personal.html">Personal</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="work.html">Work</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="social.html">Social</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="news.html">News</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="storage.html">Storage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="about-data.html">Usage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
+      <% include navbar %>
       <div class="row" id="newsContainer">
         <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex; overflow-y: auto">
           <ul class="CNNRSS">
-            <h3 style="color:red">CNN - Top Stories</h3>
+            <h3 style="color:red;">CNN - Top Stories</h3>
           </ul>
           <script type ="text/babel">
             $(document).ready(function() {
@@ -135,7 +39,7 @@
         </div>
         <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex;">
           <ul class="NYTRSS">
-            <h3 style="color:blue">The New York Times - Top Stories</h3>
+            <h3 style="color:blue;">The New York Times - Top Stories</h3>
           </ul>
           <script type ="text/babel">
             $(document).ready(function() {
@@ -164,7 +68,7 @@
         </div>
         <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex;">
           <ul class="YAHOOF">
-            <h3 style="color:purple">Yahoo Finance!</h3>
+            <h3 style="color:purple;">Yahoo Finance!</h3>
           </ul>
           <script type ="text/babel">
             $(document).ready(function() {
@@ -193,7 +97,7 @@
         </div>
         <div class="col-md-3" id="newsFeed" style="width:24%; display: inline-flex;">
           <ul class="REUTTECH">
-            <h3 style="color:orange">Reuters - Technology</h3>
+            <h3 style="color:orange;">Reuters - Technology</h3>
           </ul>
           <script type ="text/babel">
             $(document).ready(function() {
@@ -222,11 +126,6 @@
         </div>
       </div>
     </div> 
-    <footer>
-      <div class="container-fluid">
-        <span>Authors: Gordon Ngo, Sean Wolford</span>
-      </div>
-    </footer>
-    </div>
+    <% include footer %>
   </body>
 </html>

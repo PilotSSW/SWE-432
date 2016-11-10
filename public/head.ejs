@@ -1,0 +1,78 @@
+	<!-- views/partials/head.ejs -->
+
+	<meta charset="UTF-8">
+	<meta name="description"
+	content="Static skeleton page for SWE Project done in tutorial format"/>
+	<meta name="keywords"
+	content="html5 tutorial, gmu swe432, html5"/>
+	<meta name="robots" content="index,follow"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+	<script type="javascript" src="assets/js/bootstrap.js"></script>
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="assets/css/tasklist.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine-html.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/boot.min.js"></script>
+	<link rel="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.css"></link>
+	<!-- CodeMirror -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
+	<!-- Firebase initialization -->
+
+	<script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+	<script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+	<script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyA2d80wrdiDQ3Vw999T8HqvYXcG8KBVcEs",
+			authDomain: "unityos-88808.firebaseapp.com",
+			databaseURL: "https://unityos-88808.firebaseio.com",
+			storageBucket: "unityos-88808.appspot.com",
+			messagingSenderId: "761255611285"
+		};
+		firebase.initializeApp(config);
+	</script>
+	<script type="text/javascript">
+	  initApp = function() {
+	    firebase.auth().onAuthStateChanged(function(user) {
+	      if (user) {
+	        // User is signed in.
+	        var displayName = user.displayName;
+	        var email = user.email;
+	        var emailVerified = user.emailVerified;
+	        var photoURL = user.photoURL;
+	        var uid = user.uid;
+	        var providerData = user.providerData;
+	        user.getToken().then(function(accessToken) {
+	          document.getElementById('sign-in-status').textContent = 'Signed in';
+	          document.getElementById('sign-in').textContent = 'Sign out';
+	          document.getElementById('account-details').textContent = JSON.stringify({
+	            displayName: displayName,
+	            email: email,
+	            emailVerified: emailVerified,
+	            photoURL: photoURL,
+	            uid: uid,
+	            accessToken: accessToken,
+	            providerData: providerData
+	          }, null, '  ');
+	        });
+	      } else {
+	        // User is signed out.
+	        document.getElementById('sign-in-status').textContent = 'Signed out';
+	        document.getElementById('sign-in').textContent = 'Sign in';
+	        document.getElementById('account-details').textContent = 'null';
+	      }
+	    }, function(error) {
+	      console.log(error);
+	    });
+	  };
+
+	  window.addEventListener('load', function() {
+	    initApp()
+	  });
+	</script>

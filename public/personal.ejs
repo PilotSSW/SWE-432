@@ -1,122 +1,12 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-        <meta charset="UTF-8">
-        <meta name="description"
-        content="Static skeleton page for SWE Project done in tutorial format"/>
-        <meta name="keywords"
-        content="html5 tutorial, gmu swe432, html5"/>
-        <meta name="robots" content="index,follow"/>
-        <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
-        <script type="javascript" src="assets/js/bootstrap.js"></script>
-        <link rel="stylesheet" href="assets/css/bootstrap.css">
-        <link rel="stylesheet" href="assets/css/bootstrap-responsive.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
-        <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
-        <script src="https://cdn.firebase.com/libs/reactfire/1.0.0/reactfire.min.js"></script>
-        <script>
-          // Initialize Firebase
-          var config = {
-            apiKey: "AIzaSyA2d80wrdiDQ3Vw999T8HqvYXcG8KBVcEs",
-            authDomain: "unityos-88808.firebaseapp.com",
-            databaseURL: "https://unityos-88808.firebaseio.com",
-            storageBucket: "unityos-88808.appspot.com",
-            messagingSenderId: "761255611285"
-          };
-          firebase.initializeApp(config);
-        </script>
-        <script type="text/javascript">
-          initApp = function() {
-            firebase.auth().onAuthStateChanged(function(user) {
-              if (user) {
-                // User is signed in.
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var uid = user.uid;
-                var providerData = user.providerData;
-                user.getToken().then(function(accessToken) {
-                  document.getElementById('sign-in-status').textContent = 'Signed in';
-                  document.getElementById('sign-in').textContent = 'Sign out';
-                  document.getElementById('account-details').textContent = JSON.stringify({
-                    displayName: displayName,
-                    email: email,
-                    emailVerified: emailVerified,
-                    photoURL: photoURL,
-                    uid: uid,
-                    accessToken: accessToken,
-                    providerData: providerData
-                  }, null, '  ');
-                });
-              } else {
-                // User is signed out.
-                document.getElementById('sign-in-status').textContent = 'Signed out';
-                document.getElementById('sign-in').textContent = 'Sign in';
-                document.getElementById('account-details').textContent = 'null';
-              }
-            }, function(error) {
-              console.log(error);
-            });
-          };
-
-          window.addEventListener('load', function() {
-            initApp()
-          });
-        </script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine-html.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/boot.min.js"></script>
-        <link rel="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.css"></link>
-
-
-        <!-- CodeMirror -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
-
-        <!-- Firepad -->
-        <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
-        <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
-
-        <title>SWE-432</title>
+        <% include head %>
     </head>
 
   <body onload="init()">
     <div class="container-fluid">
-      <div class="row">
-        <nav class="navbar navbar-default navbar-fixed">
-          <ul class="nav nav-justified">
-            <li class="nav-item">
-                <a class="nav-link" href="home.html">Home</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="personal.html">Personal</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="work.html">Work</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="social.html">Social</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="news.html">News</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="storage.html">Storage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="about-data.html">Usage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <% include navbar %>
 
       <div class="content">
         <div id="thelist" class="row"><h3>Tasks</h3></div>
@@ -357,12 +247,7 @@
                 return ref;
             }
         </script>
-
-        <footer class="footer">
-          <div class="container-fluid">
-            <span>Authors: Gordon Ngo, Sean Wolford</span>
-          </div>
-        </footer>
     </div>
+    <% include footer %>
   </body>
 </html>

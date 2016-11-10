@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <% include head %>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <% include navbar.ejs %>
+
+      <div id = "home"></div>
+      <div id = "unity"></div>
+      <script type="text/babel">
+        class HelloWorld extends React.Component {
+          render() {
+            return (
+              <p>
+                <h5>Hello, <input type="text" placeholder="Your name here" />!</h5>
+                <h5>It is </h5><h3>{this.props.date.toTimeString()}</h3>
+              </p>
+            );
+          }
+        });
+          
+        ReactDOM.render(<HelloWorld />, document.getElementById('home'));
+
+        setInterval(tick, 500);
+        /*
+        describe("toBe", function() { 
+          it("should pass equal numbers", function() { 
+            expect(1).toBe(1);  });
+
+          it("should pass equal strings", function() {
+            expect("testing").toBe("testing"); 
+          });
+
+          it("should pass equal booleans", function() {expect(true).toBe(true);});
+
+          it("should pass same objects", function() {var object = {a: "testing"};
+            expect(object).toBe(object); 
+          });
+
+          it("should pass same arrays", function() {var array = [1, 2, 3];
+            expect(array).toBe(array); 
+          });
+
+          it("should not pass equal objects", function() {expect({a: "testing"}).not.toBe({a: "testing"});}); 
+           
+          it("should not pass equal arrays", function() { 
+            expect([1, 2, 3]).not.toBe([1, 2, 3]);  }); 
+        });
+        */
+      </script> 
+    </div>
+    <% include footer %>
+  </body>
+</html>

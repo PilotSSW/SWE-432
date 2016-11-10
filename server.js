@@ -9,7 +9,11 @@ app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
+app.use(express.static('public'))
+app.use('/static', express.static('public'))
+app.use(express.static(path.join(__dirname, '/public/')));
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/public/'));
 
 firebase.initializeApp({
     serviceAccount: "privkey.json",
@@ -17,17 +21,15 @@ firebase.initializeApp({
 });
 var fireRef = firebase.database().ref('users');
 
-app.use(express.static('public'))
-app.use('/static', express.static(path.join(__dirname, 'public')))
-app.use('/', express.static(__dirname + '/public/login.html'))
-app.use('/home', express.static(path.join(__dirname + '/public/home.html')))
-app.get('/news', express.static(path.join(__dirname + '/public/news.html')))
-app.get('/work', express.static(path.join(__dirname + '/public/work.html')))
-app.get('/home', express.static(path.join(__dirname + '/public/home.html')))
-app.get('/personal', express.static(path.join(__dirname + '/public/personal.html')))
-app.get('/social', express.static(path.join(__dirname + '/public/social.html')))
-app.get('/storage', express.static(path.join(__dirname + '/public/storage.html')))
-app.get('/about', express.static(path.join(__dirname + '/public/about.html')))
+app.get('/', function(req, res) {res.render('login');});
+app.get('/home', function(req, res) {res.render('home');});
+app.get('/news', function(req, res) {res.render('news');});
+app.get('/work', function(req, res) {res.render('work');});
+app.get('/usage', function(req, res) {res.render('usage');});
+app.get('/social', function(req, res) {res.render('social');});
+app.get('/storage', function(req, res) {res.render('storage');});
+app.get('/personal', function(req, res) {res.render('personal');});
+
 
 app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);

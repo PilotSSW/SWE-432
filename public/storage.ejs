@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+    <% include head %>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <% include navbar %>
+      <div class="storage row" id="upload">
+      	<input type="file" name="uploadfile" id="fileUpload">
+      	<input type="submit" value="Upload File" id="submitfile">
+      	<div id="downloadURL">
+      	<script type="text/babel">
+      		var storageRef = firebase.storage.Reference("folderName/file.jpg");
+					var fileUpload = document.getElementById("fileUpload");
+					fileUpload.on('change', function(evt){
+						var firstFile = evt.target.file[0];
+						var uploadTask = storageRef.put(firstFile);
+					});
+				</script>
+			</div>
+		</div>
+    <% include footer %>
+	</body>
+</html>
+
+
+

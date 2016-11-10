@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+  	<% include head %>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <% include navbar %>
+      <div id="Timer"></div>
+      <script type="text/babel">
+        require('react');
+        require('react-DOM');
+        import Dropdown from 'react-timer'
+        import ReactDOM from 'react-dom'
+        import React, { Component, PropTypes } from 'react'
+
+        class TestComponent extends Component {
+          /* delay is just the delay on showing the update of the timer */
+          let OPTIONS = { prefix: 'seconds elapsed!', delay: 100}
+          render () {
+            return (
+              <div>
+                <Timer options={OPTIONS} />
+              </div>
+            );
+          }
+        }
+
+        ReactDOM.render( <TestComponent />, document.getElementById('Timer'));
+      </script>
+    </div> 
+    <% include footer %>
+  </body>
+</html>
