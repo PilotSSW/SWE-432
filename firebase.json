@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/PilotSSW/SWE-432#readme",
   "dependencies": {
-<<<<<<< HEAD:package.json
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "feed-read": "0.0.1",
+    "firebase": "^3.4.0",
     "lodash": "^3.8.0",
     "querystring": "^0.2.0",
     "react": "^0.13.3",
@@ -35,9 +35,7 @@
     "react-tools": "^0.13.3",
     "reactify": "^1.1.1",
     "watchify": "^3.7.0"
-=======
-    "express": "^4.14.0",
-    "firebase": "^3.4.0"
+    
   },
   "devDependencies": {
     "nodemon": "^1.10.2"
@@ -53,6 +51,5 @@
         "destination": "/index.html"
       }
     ]
->>>>>>> origin/master:firebase.json
   }
 }
